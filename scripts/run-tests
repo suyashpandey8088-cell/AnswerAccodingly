@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+.venv/bin/pytest apps/backend/tests -q
+if [[ "${QUIZPILOT_RUN_BROWSER:-0}" == "1" ]]; then
+  .venv/bin/pytest apps/backend/tests/test_browser_integration.py --run-browser -q
+fi
+cd apps/desktop
+npm run typecheck
+npm test
