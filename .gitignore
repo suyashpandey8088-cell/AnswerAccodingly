@@ -1,0 +1,35 @@
+# Local secrets and runtime state
+.env
+.runtime/
+*.log
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.db
+*.db-shm
+*.db-wal
+apps/backend/data/
+apps/backend/build/
+apps/backend/dist/
+
+# Node / Electron
+node_modules/
+apps/desktop/.build/
+apps/desktop/renderer/dist/
+apps/desktop/release/
+
+# Downloadable local artifacts (not source-controlled)
+release/
+reports/*.png
+reports/*.json
+reports/*.csv
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

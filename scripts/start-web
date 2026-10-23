@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export QUIZPILOT_API_TOKEN="$($ROOT/.venv/bin/python -c 'import secrets; print(secrets.token_urlsafe(32))')"
+export VITE_QUIZPILOT_API_TOKEN="$QUIZPILOT_API_TOKEN"
+cd "$ROOT/apps/backend"
+"$ROOT/.venv/bin/python" -m uvicorn app.main:app --host 127.0.0.1 --port 8765 &
+BACKEND_PID=$!
+trap 'kill "$BACKEND_PID" 2>/dev/null || true' EXIT INT TERM
+cd "$ROOT/apps/desktop"
+npm run dev:renderer
