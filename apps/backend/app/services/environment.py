@@ -55,6 +55,14 @@ class EnvironmentValidator:
                 {"question", "answer", "submit"}.issubset(project.target_config.regions),
                 "Question, answer and submit regions must be explicitly calibrated",
             )
+        if project.solver_settings.provider == "llm":
+            add(
+                "llm_credential",
+                bool(self.settings.llm_api_key),
+                "An OpenAI-compatible credential is configured in the backend environment"
+                if self.settings.llm_api_key
+                else "Set QUIZPILOT_LLM_API_KEY in the backend environment before an LLM Autopilot run",
+            )
         add(
             "operator_confirmation",
             bool(operator_confirmed and project.safety_settings.operator_confirmed),

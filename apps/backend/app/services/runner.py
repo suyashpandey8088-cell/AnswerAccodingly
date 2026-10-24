@@ -5,7 +5,7 @@ import re
 import time
 from typing import Any
 
-from ..adapters.base import AdapterError, QuizAdapter
+from ..adapters.base import AdapterError, NavigationError, QuizAdapter
 from ..adapters.browser import BrowserAdapter
 from ..adapters.desktop import DesktopAdapter
 from ..config import Settings
@@ -109,6 +109,8 @@ class RunManager:
         startup_ms = await adapter.start()
         statuses: list[str] = []
         max_questions = config.safety_settings.max_questions
+        last_desktop_fingerprint: tuple[str, ...] | None = None
+        limit_reached = False
         for sequence in range(1, max_questions + 1):
             question_started = time.perf_counter()
             question: NormalizedQuestion | None = None
@@ -135,6 +137,13 @@ class RunManager:
                     extraction_duration_ms=extraction_ms,
                 )
                 timings["classification_ms"] = (time.perf_counter() - classification_started) * 1000
+                if config.adapter_type == AdapterType.desktop:
+                    fingerprint = (question.text, *(option.value for option in question.options))
+                    if fingerprint == last_desktop_fingerprint:
+                        raise NavigationError(
+                            "The same desktop question remained visible after navigation; stopping to prevent repeated autonomous answers"
+                        )
+                    last_desktop_fingerprint = fingerprint
                 self._progress(run_id, sequence, "solving", question)
 
                 allowed_types = {getattr(value, "value", value) for value in config.question_types}
@@ -250,7 +259,17 @@ class RunManager:
                 return
             if solver.status != SolverStatus.solved or not should_continue:
                 break
+        else:
+            limit_reached = should_continue
 
+        if limit_reached:
+            await self._finish_once(
+                run_id,
+                RunStatus.unknown,
+                "Maximum question limit reached before completion was observed; autonomous run stopped",
+                event="run.completed",
+            )
+            return
         if any(status in {"failed", "timeout", "error"} for status in statuses):
             final_run_status = RunStatus.failed
         elif not statuses or any(status == "unknown" for status in statuses):

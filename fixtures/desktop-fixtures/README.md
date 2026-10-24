@@ -1,7 +1,9 @@
 # Desktop fixture status
 
-No universal native window-control fixture is claimed for the MVP. The desktop adapter requires an operator-owned visible application and explicitly measured regions for `question`, `answer`, and `submit`; `timer`, `feedback`, `next`, and option regions are optional capabilities.
+No universal native window-control fixture is claimed. Windows Desktop Autopilot requires an operator-owned or explicitly authorized visible application and measured regions for `question`, `answer`, and `submit`; `timer`, `feedback`, `next`, `complete`, and `option_1`…`option_6` are optional capabilities. Use `next` for multi-question navigation and calibrate `complete` to recognize a results/completion screen.
 
-Use the project's **Desktop · Calibrated OCR** editor to enter regions. Keep the window in a fixed position during the run. Never reuse coordinates across resolutions, displays, or window positions without recalibration.
+Use **Desktop Autopilot → New Autopilot** for a desktop-only template, or the advanced project editor. Keep the window in a fixed position during the run. Never reuse coordinates across resolutions, displays, DPI settings, or window positions without recalibration.
 
-Headless CI tests mock OCR output. A real graphical smoke test requires a graphical session, Tesseract, OS accessibility/screen-recording permission, and an operator-provided application fixture; it is not automatically marked as passing.
+On Windows, the adapter requires one unique title match, verifies foreground focus, and refuses calibrated regions outside the current window. It does not fall back to another app or bypass OS protections.
+
+Headless tests mock OCR, focus, bounds, answer mapping, delayed feedback, and autonomous stop conditions. A real graphical smoke test still requires Windows, a graphical session, Tesseract, OS permission, and an operator-provided application fixture; it is not automatically marked as passing.

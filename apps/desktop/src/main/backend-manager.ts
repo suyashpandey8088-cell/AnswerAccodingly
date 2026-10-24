@@ -17,7 +17,9 @@ export class BackendManager {
   private readyPromise: Promise<BackendConnection> | null = null;
 
   async start(): Promise<BackendConnection> {
-    if (this.readyPromise && this.state === "ready") return this.readyPromise;
+    // Main-window startup and the renderer's first connection request can race.
+    // Always share one launch attempt instead of spawning duplicate Python processes.
+    if (this.readyPromise) return this.readyPromise;
     this.readyPromise = this.startInternal();
     return this.readyPromise;
   }
@@ -59,7 +61,9 @@ export class BackendManager {
     });
     this.child.on("exit", (code) => {
       if (!this.stopping && this.state !== "error") {
-        this.setState("error", `Backend exited unexpectedly (code ${code ?? "unknown"})`);
+        const output = this.logs.join(" ").trim();
+        const suffix = output ? `: ${output.slice(-1_500)}` : "";
+        this.setState("error", `Backend exited unexpectedly (code ${code ?? "unknown"})${suffix}`);
       }
     });
 

@@ -129,6 +129,29 @@ export function demoProject(baseUrl = "http://127.0.0.1:8765"): ProjectCreate {
   };
 }
 
+export function windowsAutopilotProject(): ProjectCreate {
+  return {
+    name: "Windows Desktop Autopilot",
+    adapter_type: "desktop",
+    target_config: {
+      url: null,
+      application_name: null,
+      window_title: "",
+      oracle_profile: null,
+      demo_scenario: "normal",
+      headless: false,
+      question_type: null,
+      code_language: null,
+      regions: {},
+    },
+    selector_config: { ...DEFAULT_SELECTORS },
+    timeout_settings: { operation_ms: 10_000, feedback_ms: 8_000, run_seconds: 900 },
+    solver_settings: { provider: "llm", model: null, timeout_seconds: 45, max_retries: 2, use_sandbox: true },
+    safety_settings: { allow_submit: true, operator_confirmed: true, max_questions: 25, failure_threshold: 3, diagnostic_capture: false },
+    question_types: ["multiple_choice", "multiple_select", "math", "logical", "text", "programming"],
+  };
+}
+
 export async function streamRunEvents(runId: string, onEvent: (event: LiveRunEvent) => void, signal: AbortSignal): Promise<void> {
   const connection = await getConnection();
   const response = await fetch(`${connection.baseUrl}/api/runs/${runId}/events`, {

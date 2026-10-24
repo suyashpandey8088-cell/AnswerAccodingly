@@ -29,7 +29,8 @@ export function StartRunDialog({ project, open, onOpenChange }: { project: Proje
     onOpenChange(next);
   };
 
-  return <Dialog open={open} onOpenChange={changeOpen} title="Validate & start QA run" description="QuizPilot will visibly inspect and interact only with the configured target. No fallback target is selected." wide>
+  const desktop = project.adapter_type === "desktop";
+  return <Dialog open={open} onOpenChange={changeOpen} title={desktop ? "Validate & start Windows Autopilot" : "Validate & start QA run"} description={desktop ? "After this confirmation there are no further prompts: OCR, solving, answer clicks, submission and navigation continue until completion or a safety stop." : "QuizPilot will visibly inspect and interact only with the configured target. No fallback target is selected."} wide>
     <div className="grid gap-6 px-6 py-6 md:grid-cols-[0.85fr_1.15fr]">
       <div>
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-4"><div className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400">Target snapshot</div><div className="mt-2 text-sm font-semibold text-slate-800">{project.name}</div><div className="mt-1 text-[11px] capitalize text-slate-500">{project.adapter_type} adapter · {project.safety_settings.max_questions} questions max</div><div className="mt-3 break-all rounded-lg bg-white p-2.5 font-mono text-[10px] leading-4 text-slate-500">{project.target_config.url || project.target_config.application_name || project.target_config.window_title}</div></div>
@@ -42,6 +43,6 @@ export function StartRunDialog({ project, open, onOpenChange }: { project: Proje
       </div>
     </div>
     {(start.error || (validation.data && !validation.data.valid && confirmed)) && <div className="px-6 pb-4">{start.error ? <ErrorState error={start.error} /> : <div className="rounded-lg bg-amber-50 p-3 text-[11px] text-amber-800">Resolve the failed checks above before starting. No target or dependency fallback will be used.</div>}</div>}
-    <div className="flex justify-end gap-2 border-t border-slate-100 px-6 py-4"><Button variant="secondary" onClick={() => changeOpen(false)}>Cancel</Button><Button disabled={!confirmed || !validation.data?.valid} loading={start.isPending} onClick={() => start.mutate()}><Play size={14} />Start authorized run</Button></div>
+    <div className="flex justify-end gap-2 border-t border-slate-100 px-6 py-4"><Button variant="secondary" onClick={() => changeOpen(false)}>Cancel</Button><Button disabled={!confirmed || !validation.data?.valid} loading={start.isPending} onClick={() => start.mutate()}><Play size={14} />{desktop ? "Start hands-free Autopilot" : "Start authorized run"}</Button></div>
   </Dialog>;
 }
