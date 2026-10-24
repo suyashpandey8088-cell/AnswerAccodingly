@@ -142,7 +142,7 @@ export interface EnvironmentValidation { valid: boolean; checks: EnvironmentChec
 export interface SystemStatus {
   python_version: string;
   browser: { available: boolean; detail: string };
-  desktop: { available: boolean; detail: string; supported_window_selection: string };
+  desktop: { available: boolean; detail: string; supported_window_selection: string; platform: string; windows_window_targeting: boolean };
   sandbox: { available: boolean; detail: string };
   llm: { configured: boolean; provider: string; model: string; detail: string };
   persistence: string;

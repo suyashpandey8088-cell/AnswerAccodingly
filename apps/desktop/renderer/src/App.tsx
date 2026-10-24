@@ -1,5 +1,6 @@
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
+import { AutopilotPage } from "./pages/AutopilotPage";
 import { ConfigurationPage } from "./pages/ConfigurationPage";
 import { LiveRunPage } from "./pages/LiveRunPage";
 import { OverviewPage } from "./pages/OverviewPage";
@@ -14,6 +15,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<OverviewPage />} />
+        <Route path="autopilot" element={<AutopilotPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="projects/:id/configure" element={<ConfigurationPage />} />
         <Route path="runs" element={<RunsPage />} />

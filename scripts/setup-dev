@@ -3,14 +3,23 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 PYTHON="${QUIZPILOT_PYTHON:-python3}"
-"$PYTHON" -c 'import sys; assert sys.version_info >= (3, 11), "Python 3.11 or newer is required"'
+VERSION_CHECK='import sys; raise SystemExit(0 if (3, 11) <= sys.version_info[:2] < (3, 14) else 1)'
+if ! "$PYTHON" -c "$VERSION_CHECK"; then
+  printf 'QuizPilot requires Python >=3.11 and <3.14. Use Python 3.12; Python 3.14 is incompatible with the pinned wheels.\n' >&2
+  exit 1
+fi
+if [[ -x .venv/bin/python ]] && ! .venv/bin/python -c "$VERSION_CHECK" 2>/dev/null; then
+  BACKUP=".venv-unsupported-$(date +%Y%m%d%H%M%S)"
+  printf 'Preserving unsupported virtual environment as %s\n' "$BACKUP"
+  mv .venv "$BACKUP"
+fi
 if [[ ! -x .venv/bin/python ]]; then "$PYTHON" -m venv .venv; fi
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/pip install -r apps/backend/requirements.txt
+.venv/bin/python -m pip install -r apps/backend/requirements.txt
 cd apps/desktop
-if [[ -f package-lock.json ]]; then npm ci; else npm install; fi
+npm ci
 cd "$ROOT"
-.venv/bin/playwright install chromium
+.venv/bin/python -m playwright install chromium
 if ! command -v tesseract >/dev/null 2>&1; then
   printf '\nNote: Tesseract was not found. Browser QA works; desktop OCR remains unavailable.\n'
 fi

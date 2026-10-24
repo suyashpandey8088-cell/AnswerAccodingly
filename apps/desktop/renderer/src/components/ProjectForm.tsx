@@ -11,10 +11,10 @@ const selectorLabels: Record<string, string> = {
   question_root: "Question container", question: "Question text", options: "Answer option", timer: "Timer",
   text_answer: "Text answer", code_answer: "Code editor", submit: "Submit", next: "Next", feedback: "Feedback", complete: "Completion state",
 };
-const regionNames = ["question", "timer", "answer", "submit", "next", "feedback", "option_1", "option_2"];
+const regionNames = ["question", "timer", "answer", "submit", "next", "feedback", "complete", "option_1", "option_2", "option_3", "option_4", "option_5", "option_6"];
 
-function cloneProject(project?: Project): ProjectCreate {
-  if (!project) return demoProject();
+function cloneProject(project?: Project, template?: ProjectCreate): ProjectCreate {
+  if (!project) return template ? structuredClone(template) : demoProject();
   return {
     name: project.name,
     adapter_type: project.adapter_type,
@@ -27,18 +27,18 @@ function cloneProject(project?: Project): ProjectCreate {
   };
 }
 
-export function ProjectForm({ project, onSaved, onCancel }: { project?: Project; onSaved: (project: Project) => void; onCancel?: () => void }) {
+export function ProjectForm({ project, template, desktopOnly = false, onSaved, onCancel }: { project?: Project; template?: ProjectCreate; desktopOnly?: boolean; onSaved: (project: Project) => void; onCancel?: () => void }) {
   const queryClient = useQueryClient();
-  const [form, setForm] = useState<ProjectCreate>(() => cloneProject(project));
+  const [form, setForm] = useState<ProjectCreate>(() => cloneProject(project, template));
   const [formError, setFormError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (project) return;
+    if (project || template) return;
     void getConnection().then((connection) => {
       const base = connection.baseUrl || "http://127.0.0.1:8765";
       setForm((current) => ({ ...current, target_config: { ...current.target_config, url: `${base.replace(/\/$/, "")}/demo/?scenario=normal` } }));
     }).catch(() => undefined);
-  }, [project]);
+  }, [project, template]);
 
   const mutation = useMutation({
     mutationFn: (data: ProjectCreate) => project ? api.updateProject(project.id, data) : api.createProject(data),
@@ -85,7 +85,7 @@ export function ProjectForm({ project, onSaved, onCancel }: { project?: Project;
       <SectionTitle number="01" title="Project & authorized target" description="Choose exactly which developer-owned environment this agent may inspect." />
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <Field label="Project name"><Input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Checkout quiz regression" /></Field>
-        <Field label="Adapter"><Select value={form.adapter_type} onChange={(event) => setForm({ ...form, adapter_type: event.target.value as ProjectCreate["adapter_type"] })}><option value="browser">Browser · Playwright</option><option value="desktop">Desktop · Calibrated OCR</option></Select></Field>
+        <Field label="Adapter">{desktopOnly ? <div className="flex h-10 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-xs font-medium text-slate-600">Windows Desktop · Autopilot OCR & visible input</div> : <Select value={form.adapter_type} onChange={(event) => setForm({ ...form, adapter_type: event.target.value as ProjectCreate["adapter_type"] })}><option value="browser">Browser · Playwright</option><option value="desktop">Windows Desktop · Calibrated OCR</option></Select>}</Field>
       </div>
       {form.adapter_type === "browser" ? <div className="mt-4 space-y-4">
         <Field label="Authorized quiz URL" hint="Loopback targets are allowed by default. Redirects and DNS results are revalidated."><Input className="font-mono text-xs" value={form.target_config.url || ""} onChange={(event) => updateTarget("url", event.target.value)} placeholder="http://127.0.0.1:8765/demo/" /></Field>
@@ -106,7 +106,7 @@ export function ProjectForm({ project, onSaved, onCancel }: { project?: Project;
         <Checkbox label="Run browser headlessly" description="Off by default. Keep this unchecked to observe the visible Chromium QA session." checked={form.target_config.headless} onChange={(checked) => updateTarget("headless", checked)} />
       </div> : <div className="mt-4 space-y-4">
         <div className="grid gap-4 md:grid-cols-2"><Field label="Application name"><Input value={form.target_config.application_name || ""} onChange={(event) => updateTarget("application_name", event.target.value)} placeholder="My assessment fixture" /></Field><Field label="Window title"><Input value={form.target_config.window_title || ""} onChange={(event) => updateTarget("window_title", event.target.value)} placeholder="Quiz window" /></Field></div>
-        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-[11px] leading-5 text-amber-800"><strong>Operator calibration required.</strong> Keep the target visible in a fixed position and enter measured screen regions. Pixel changes alone do not prove correctness; ambiguous OCR requires review.</div>
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-[11px] leading-5 text-amber-800"><strong>One-time operator calibration required.</strong> Keep the authorized Windows target visible in a fixed position and enter measured screen regions. On Windows, QuizPilot verifies a unique window, foreground focus and region containment before every click. After the run starts it does not prompt again; uncertain OCR, unverified navigation or timeouts stop it automatically.</div>
         <div className="overflow-hidden rounded-xl border border-slate-200">
           <div className="grid grid-cols-[1.2fr_repeat(4,0.7fr)] gap-2 bg-slate-50 px-3 py-2 text-[9px] font-bold uppercase tracking-wide text-slate-500"><span>Region</span><span>X</span><span>Y</span><span>Width</span><span>Height</span></div>
           {regionNames.map((name) => {

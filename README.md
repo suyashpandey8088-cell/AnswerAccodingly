@@ -16,20 +16,19 @@ Local desktop QA automation for **developer-owned or explicitly authorized quiz 
 - Managed background runs, bounded concurrency, hard deadlines, failure thresholds, real cancellation, SSE updates, and interrupted-run recovery.
 - Overview, project CRUD/configuration, live runs, result search/filter/sort, report charts, JSON/CSV export, and capability settings.
 - Local demo with normal, delayed, incorrect-feedback, missing-element, and timeout scenarios.
-- Calibrated desktop OCR adapter with confidence handling and visible input. No guessed coordinates or OS-permission bypass.
+- Dedicated **Windows Desktop Autopilot** for authorized native apps: one-time calibration, unique-window targeting, foreground-focus and bounds checks, exact OCR-option answer mapping, delayed-feedback polling, completion detection, and hands-free navigation after one run confirmation.
+- Automatic safety stops for uncertain OCR, low-confidence feedback, repeated desktop questions, unverified navigation, failure thresholds, question limits, and deadlines. No guessed coordinates or OS-permission bypass.
 - Opt-in Docker Python sandbox with network disabled, CPU/memory/PID limits, read-only filesystem, dropped capabilities, wall timeout, and named-container cleanup.
 
-## Verified in this workspace — 2026-10-23
+## Verification status — 2026-10-24
 
 | Check | Actual result |
 |---|---|
-| Backend headless-safe tests | **40 passed, 6 skipped** (skips are opt-in browser/desktop/Docker groups) |
-| Real Chromium integration | **4 passed**: extraction/interaction/navigation/cleanup, timeout, missing element, and full six-question run |
-| Full real demo run | 6 persisted results: **5 independently verified passed + 1 unknown programming result** with sandbox unsupported |
-| UI-driven browser workflow | Project created, environment validated, run confirmed/started, 6 rows persisted, report opened; **0 console/page errors** |
-| Electron preload/IPC tests | **3 passed** |
-| TypeScript + production build | Renderer and Electron main/preload builds passed; npm audit reported **0 vulnerabilities** |
-| Desktop graphical adapter | **Not verified on a physical desktop**; OCR/confidence/calibration unit tests only |
+| Current backend headless-safe tests | **49 passed, 6 skipped**; includes mocked Windows focus/bounds, exact option mapping, delayed/low-confidence feedback, repeated-question and run-limit stops |
+| Current Electron lifecycle/preload/IPC tests | **4 passed**, including single-flight backend startup |
+| Current TypeScript + production build | Renderer and Electron main/preload builds passed; npm audit reported **0 vulnerabilities** |
+| Current real Chromium integration | **Not rerun in this fresh sandbox** because Chromium download hosts are blocked. The merged baseline previously passed all 4 real-browser tests and the six-question demo |
+| Windows graphical Autopilot | **Not verified on a physical Windows desktop**; window, OCR and loop behavior have mocked/headless tests only |
 | Docker sandbox | Mocked command/timeout/isolation tests passed; no real Docker execution claimed |
 | LLM provider | Mocked transport/validation tests passed; no live provider call claimed |
 | Native Electron launch / installer | **Not verified here**; Electron binary asset host inaccessible, and this Python lacks shared `libpython` for PyInstaller |
@@ -38,7 +37,7 @@ Local desktop QA automation for **developer-owned or explicitly authorized quiz 
 
 ### Requirements
 
-- Python **3.11+** (3.12 recommended), with `venv` and pip.
+- Python **3.11, 3.12, or 3.13** (3.12 recommended), with `venv` and pip. **Python 3.14 is not supported by the pinned NumPy/Pillow wheels.** Setup selects a supported interpreter and preserves an unsupported old `.venv` under a timestamped backup name.
 - Node.js **22.12+** and npm 10+.
 - A graphical desktop for normal visible Chromium and desktop input.
 - Tesseract OCR only for desktop projects.
@@ -84,6 +83,35 @@ Use `scripts/run-tests.ps1`, `scripts/build-backend.ps1`, and `scripts/package-d
 - **Windows:** install a maintained Tesseract distribution and add its executable to `PATH`.
 
 Desktop automation may also require OS screen-recording/accessibility permission. QuizPilot never bypasses those prompts.
+
+## Windows Desktop Autopilot
+
+Use this workflow only with a native Windows quiz application you own or are explicitly authorized to automate. It provides unattended execution **after one validated run confirmation**, not unrestricted control of other applications.
+
+For arbitrary questions, configure an OpenAI-compatible provider locally before launching Electron:
+
+```powershell
+$env:QUIZPILOT_LLM_API_KEY = "your-local-secret"
+$env:QUIZPILOT_LLM_BASE_URL = "https://api.openai.com/v1"
+$env:QUIZPILOT_LLM_MODEL = "your-model-identifier"
+powershell -ExecutionPolicy Bypass -File scripts/start-dev.ps1
+```
+
+Never commit the key or paste it into project JSON. The deterministic solver remains useful for supported local fixtures but cannot solve arbitrary questions.
+
+1. Open **Desktop Autopilot → New Autopilot**.
+2. Enter a unique authorized window title (or an application title substring) and a project name.
+3. Keep the target window visible, fixed in size/position, and calibrate absolute screen regions:
+   - Required: `question`, `answer`, `submit`.
+   - Choice questions: calibrate `option_1` through the required option number (up to six in the editor).
+   - Multi-question navigation: calibrate `next`; `complete` is strongly recommended for detecting results/completion.
+   - Optional: `feedback` and `timer`.
+4. Choose the LLM solver for arbitrary content, set question/run limits, and save.
+5. Review environment checks and confirm the run once. No further approval prompts occur during that run.
+
+On Windows, the adapter uniquely matches the title, restores/focuses the window, verifies foreground focus and region containment before every click, and maps each answer to its OCR text rather than its position. It waits for delayed feedback and stops automatically on low-confidence OCR, missing options, ambiguous windows, focus denial, out-of-bounds regions, repeated questions, failed navigation, timeouts, failure thresholds, or the question limit. Cancel remains available.
+
+AI answers are not guaranteed correct. Without an independent oracle, successful clicking/submission remains distinct from verified correctness. This workflow does not bypass proctoring, monitoring, OS permissions, or assessment rules.
 
 ## Run the local demo
 
@@ -214,7 +242,7 @@ Timings use `time.perf_counter()` around independent stages. Browser startup is 
 - No stealth, fingerprint manipulation, monitoring evasion, arbitrary shell actions, credential storage, or OS-permission bypass is implemented.
 - Renderer navigation/new windows are restricted. The preload has no generic IPC or filesystem methods.
 - API keys and sensitive prompts are not logged. Question text needed for QA reports is persisted; cookies/passwords/arbitrary page content are not captured.
-- Desktop actions require a configured target, calibrated regions, project authorization, and immediate run confirmation.
+- Desktop actions require a configured target, calibrated regions, project authorization, and immediate run confirmation. Windows additionally requires a unique matching window, verified foreground focus, and region containment before every click.
 - Generated code never runs in the FastAPI process. Without explicit Docker isolation it receives `unsupported`, not a pretend pass.
 
 ## Build a native package
@@ -242,8 +270,9 @@ Outputs are written to `apps/desktop/release/`. electron-builder includes the co
 
 ## Troubleshooting
 
-- **Backend unavailable:** run setup, confirm Python 3.11+, and inspect the Electron error dialog. Port 8765 is preferred; Electron selects a free loopback port if occupied.
-- **Chromium unavailable:** run `.venv/bin/playwright install chromium` (or the Windows equivalent). A custom binary can be configured through the environment.
+- **Backend unavailable:** run setup, confirm Python 3.11–3.13, and inspect the Electron error dialog. Early Python exits now include sanitized backend output. Port 8765 is preferred; Electron selects a free loopback port if occupied.
+- **NumPy tries to compile / Python 3.14:** install 64-bit Python 3.12 and rerun `scripts/setup-dev.ps1`. The script selects a supported interpreter and renames an incompatible `.venv` to a timestamped backup instead of compiling incompatible pinned packages.
+- **Chromium unavailable:** run `.venv/bin/python -m playwright install chromium` (or the Windows equivalent). A custom binary can be configured through the environment.
 - **401 responses in web development:** use `scripts/start-web`; it shares a freshly generated token between Vite and Python. Do not put tokens in URLs.
 - **Linux PyInstaller `PythonLibraryNotFoundError`:** install the development/shared Python package appropriate to your Python version, then rebuild.
 - **Desktop OCR unavailable:** install Tesseract, grant OS permissions, use a visible graphical session, and recalibrate every region.

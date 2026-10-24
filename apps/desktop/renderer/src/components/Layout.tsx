@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { Activity, BarChart3, FlaskConical, FolderKanban, LayoutDashboard, ListChecks, ScanSearch, Settings, ShieldCheck, Wifi, WifiOff } from "lucide-react";
+import { Activity, BarChart3, Bot, FlaskConical, FolderKanban, LayoutDashboard, ListChecks, ScanSearch, Settings, ShieldCheck, Wifi, WifiOff } from "lucide-react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { api } from "../api/client";
 import { cn } from "./ui";
 
 const navigation = [
   { to: "/", label: "Overview", icon: LayoutDashboard, end: true },
+  { to: "/autopilot", label: "Desktop Autopilot", icon: Bot },
   { to: "/projects", label: "Projects", icon: FolderKanban },
   { to: "/runs", label: "Test runs", icon: Activity },
   { to: "/results", label: "Results", icon: ListChecks },
   { to: "/reports", label: "Reports", icon: BarChart3 },
 ];
-const pageNames: Record<string, string> = { "/": "Overview", "/projects": "Projects", "/runs": "Test runs", "/results": "Results", "/reports": "Reports", "/settings": "Settings" };
+const pageNames: Record<string, string> = { "/": "Overview", "/autopilot": "Desktop Autopilot", "/projects": "Projects", "/runs": "Test runs", "/results": "Results", "/reports": "Reports", "/settings": "Settings" };
 
 export function Layout() {
   const location = useLocation();

@@ -56,6 +56,26 @@ def test_run_is_blocked_when_environment_is_not_ready(client):
         assert cancel.status_code in {200, 409}
 
 
+def test_desktop_llm_autopilot_requires_configured_credential(client):
+    regions = {
+        "question": {"x": 10, "y": 10, "width": 300, "height": 100},
+        "answer": {"x": 10, "y": 120, "width": 300, "height": 100},
+        "submit": {"x": 10, "y": 230, "width": 100, "height": 40},
+    }
+    payload = project_payload(
+        adapter_type="desktop",
+        target_config={"application_name": "Owned quiz", "regions": regions},
+        solver_settings={"provider": "llm", "timeout_seconds": 2, "max_retries": 0},
+    )
+    project = client.post("/api/projects", json=payload).json()
+    response = client.post(f"/api/projects/{project['id']}/validate", json={"project_id": project["id"], "operator_confirmed": True})
+    assert response.status_code == 200
+    credential = next(check for check in response.json()["checks"] if check["name"] == "llm_credential")
+    assert not credential["passed"]
+    assert "QUIZPILOT_LLM_API_KEY" in credential["detail"]
+    assert response.json()["valid"] is False
+
+
 def test_run_requires_immediate_operator_confirmation(client):
     project = client.post("/api/projects", json=project_payload()).json()
     response = client.post("/api/runs", json={"project_id": project["id"], "operator_confirmed": False})

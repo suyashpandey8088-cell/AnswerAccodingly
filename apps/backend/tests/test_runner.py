@@ -75,8 +75,8 @@ def make_manager(settings):
     return repository, events, manager
 
 
-def create_run(repository):
-    config = ProjectCreate.model_validate(project_payload())
+def create_run(repository, payload=None):
+    config = ProjectCreate.model_validate(payload or project_payload())
     project = repository.create_project(config)
     return repository.create_run(project, {"project": config.model_dump(mode="json")})
 
@@ -120,3 +120,56 @@ async def test_cancellation_is_real_and_closes_adapter(settings):
     assert stored.status == "cancelled"
     assert adapter.closed
     assert stored.ended_at is not None
+
+
+@pytest.mark.asyncio
+async def test_autonomous_run_stops_unknown_at_question_limit(settings):
+    class ContinuingAdapter(FakeBrowserAdapter):
+        async def next_question(self):
+            return NavigationResult(success=True, has_next=True, duration_ms=1)
+
+    repository, _events, manager = make_manager(settings)
+    adapter = ContinuingAdapter()
+    manager._build_adapter = lambda _config: adapter
+    payload = project_payload(safety_settings={
+        "allow_submit": True,
+        "operator_confirmed": True,
+        "max_questions": 1,
+        "failure_threshold": 3,
+    })
+    run = create_run(repository, payload)
+    await manager.start_run(run.id)
+    await asyncio.wait_for(manager._tasks[run.id], timeout=5)
+
+    stored = repository.get_run(run.id)
+    assert stored.status == "unknown"
+    assert "Maximum question limit" in stored.error_summary
+    assert len(stored.question_results) == 1
+
+
+@pytest.mark.asyncio
+async def test_desktop_autopilot_stops_when_question_does_not_change(settings):
+    class ContinuingDesktopAdapter(FakeBrowserAdapter):
+        async def next_question(self):
+            return NavigationResult(success=True, has_next=True, duration_ms=1)
+
+    repository, _events, manager = make_manager(settings)
+    manager._build_adapter = lambda _config: ContinuingDesktopAdapter()
+    regions = {
+        "question": {"x": 10, "y": 10, "width": 300, "height": 100},
+        "answer": {"x": 10, "y": 120, "width": 300, "height": 100},
+        "submit": {"x": 10, "y": 230, "width": 100, "height": 40},
+    }
+    payload = project_payload(
+        adapter_type="desktop",
+        target_config={"application_name": "Owned quiz", "window_title": "Owned quiz", "regions": regions},
+        safety_settings={"allow_submit": True, "operator_confirmed": True, "max_questions": 3, "failure_threshold": 3},
+    )
+    run = create_run(repository, payload)
+    await manager.start_run(run.id)
+    await asyncio.wait_for(manager._tasks[run.id], timeout=5)
+
+    stored = repository.get_run(run.id)
+    assert stored.status == "failed"
+    assert len(stored.question_results) == 2
+    assert "same desktop question" in stored.question_results[-1].error_details
