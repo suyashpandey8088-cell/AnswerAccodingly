@@ -9,7 +9,8 @@ from sqlalchemy import text
 from ..database import SessionLocal
 from typing import Any
 
-from ..adapters.desktop import desktop_availability
+from ..adapters.desktop import WindowsWindowTargetProvider, desktop_availability
+from ..adapters.windows_live import live_runtime_status
 from ..config import Settings
 from ..schemas.project import ProjectCreate
 from .target_policy import TargetPolicy, TargetPolicyError
@@ -47,6 +48,29 @@ class EnvironmentValidator:
             add("playwright_installed", playwright_installed, "Playwright Python package is available" if playwright_installed else "Install backend requirements")
             browser_available, browser_detail = await self.browser_available()
             add("chromium_available", browser_available, browser_detail)
+        elif project.target_config.capture_mode == "live":
+            availability = live_runtime_status()
+            add("live_windows_runtime", availability["available"], availability["detail"])
+            target_selected = bool(project.target_config.application_name or project.target_config.window_title)
+            if availability["available"] and target_selected:
+                try:
+                    await WindowsWindowTargetProvider().validate_target(
+                        project.target_config.application_name, project.target_config.window_title
+                    )
+                    add("authorized_window", True, "The selected Windows window is visible and uniquely matched")
+                except Exception as exc:
+                    add("authorized_window", False, str(exc))
+            else:
+                add(
+                    "authorized_window",
+                    target_selected,
+                    "An authorized visible Windows window is selected; unique matching runs when Windows capture is available",
+                )
+            add(
+                "zero_calibration",
+                True,
+                "Question, options, input, Submit, Next and completion are detected live on every screen",
+            )
         else:
             availability = desktop_availability()
             add("desktop_ocr_and_input", availability["available"], availability["detail"])

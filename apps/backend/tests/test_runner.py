@@ -173,3 +173,37 @@ async def test_desktop_autopilot_stops_when_question_does_not_change(settings):
     assert stored.status == "failed"
     assert len(stored.question_results) == 2
     assert "same desktop question" in stored.question_results[-1].error_details
+
+
+@pytest.mark.asyncio
+async def test_feedback_timeout_stops_without_speculative_navigation(settings):
+    class TimeoutAdapter(FakeBrowserAdapter):
+        def __init__(self):
+            super().__init__()
+            self.next_calls = 0
+
+        async def wait_for_result(self):
+            return VerificationObservation(
+                feedback_visible=False,
+                outcome="unknown",
+                timed_out=True,
+                duration_ms=5,
+                error="No result before timeout",
+            )
+
+        async def next_question(self):
+            self.next_calls += 1
+            return NavigationResult(success=True, has_next=True, duration_ms=1)
+
+    repository, _events, manager = make_manager(settings)
+    adapter = TimeoutAdapter()
+    manager._build_adapter = lambda _config: adapter
+    run = create_run(repository)
+    await manager.start_run(run.id)
+    await asyncio.wait_for(manager._tasks[run.id], timeout=5)
+
+    stored = repository.get_run(run.id)
+    assert stored.status == "failed"
+    assert len(stored.question_results) == 1
+    assert stored.question_results[0].final_status == "timeout"
+    assert adapter.next_calls == 0

@@ -13,6 +13,7 @@ import type {
   RunReport,
   SystemStatus,
   TestRun,
+  VisibleWindowsResponse,
 } from "../types";
 
 export class APIError extends Error {
@@ -70,6 +71,7 @@ export const api = {
   health: () => request<{ status: string; version: string; database: string }>("/health"),
   overview: () => request<Overview>("/api/overview"),
   systemStatus: () => request<SystemStatus>("/api/system/status"),
+  visibleWindows: () => request<VisibleWindowsResponse>("/api/system/windows"),
   projects: () => request<ProjectList>("/api/projects?limit=100"),
   project: (id: string) => request<Project>(`/api/projects/${id}`),
   createProject: (data: ProjectCreate) => request<Project>("/api/projects", { method: "POST", body: JSON.stringify(data) }),
@@ -119,6 +121,7 @@ export function demoProject(baseUrl = "http://127.0.0.1:8765"): ProjectCreate {
       headless: false,
       question_type: null,
       code_language: null,
+      capture_mode: "calibrated",
       regions: {},
     },
     selector_config: { ...DEFAULT_SELECTORS },
@@ -129,19 +132,20 @@ export function demoProject(baseUrl = "http://127.0.0.1:8765"): ProjectCreate {
   };
 }
 
-export function windowsAutopilotProject(): ProjectCreate {
+export function windowsAutopilotProject(windowTitle = ""): ProjectCreate {
   return {
-    name: "Windows Desktop Autopilot",
+    name: windowTitle ? `Live Autopilot · ${windowTitle}`.slice(0, 120) : "Windows Desktop Autopilot",
     adapter_type: "desktop",
     target_config: {
       url: null,
-      application_name: null,
-      window_title: "",
+      application_name: windowTitle || null,
+      window_title: windowTitle,
       oracle_profile: null,
       demo_scenario: "normal",
       headless: false,
       question_type: null,
       code_language: null,
+      capture_mode: "live",
       regions: {},
     },
     selector_config: { ...DEFAULT_SELECTORS },

@@ -167,6 +167,7 @@ class InteractionResult(BaseModel):
 
 class VerificationObservation(BaseModel):
     feedback_visible: bool
+    feedback_required: bool = True
     outcome: Literal["correct", "incorrect", "unknown"] = "unknown"
     text: str | None = None
     duration_ms: float = Field(ge=0)

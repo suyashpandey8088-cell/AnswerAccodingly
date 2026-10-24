@@ -43,6 +43,6 @@ Set-Location $Root
 & ".venv\Scripts\python.exe" -m playwright install chromium
 if ($LASTEXITCODE -ne 0) { throw "Playwright Chromium installation failed" }
 if (-not (Get-Command tesseract -ErrorAction SilentlyContinue)) {
-  Write-Host "Tesseract not found: browser QA works, Windows Desktop Autopilot requires Tesseract OCR."
+  Write-Host "Tesseract not found: UIA-only live capture can still work; OCR fallback and legacy calibrated desktop runs require Tesseract."
 }
 Write-Host "Setup complete. Run: powershell -ExecutionPolicy Bypass -File scripts/start-dev.ps1"

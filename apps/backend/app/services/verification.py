@@ -91,9 +91,13 @@ def verify_question(
         assertions.append(
             AssertionOutcome(
                 name="feedback_visible",
-                expected="Feedback visible before the deadline",
+                expected="Feedback visible before the deadline when the application provides it",
                 actual={"visible": observation.feedback_visible, "outcome": observation.outcome},
-                status=AssertionStatus.passed if observation.feedback_visible else AssertionStatus.failed,
+                status=(
+                    AssertionStatus.passed if observation.feedback_visible
+                    else AssertionStatus.failed if observation.feedback_required
+                    else AssertionStatus.unknown
+                ),
                 explanation=observation.error or "Feedback was observed; its text alone is not an independent correctness oracle",
             )
         )

@@ -1,10 +1,14 @@
 # PyInstaller one-folder build. The Electron package includes this directory.
 from pathlib import Path
+import sys
 from PyInstaller.utils.hooks import collect_all
 
 HERE = Path(SPECPATH)
 datas, binaries, hiddenimports = collect_all("playwright")
-for package in ("pytesseract",):
+packages = ["pytesseract", "pyperclip"]
+if sys.platform == "win32":
+    packages += ["pywinauto", "pygetwindow"]
+for package in packages:
     package_datas, package_binaries, package_hidden = collect_all(package)
     datas += package_datas
     binaries += package_binaries
