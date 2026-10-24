@@ -2,7 +2,7 @@
 
 Local desktop QA automation for **developer-owned or explicitly authorized quiz environments**. QuizPilot inspects a visible quiz, normalizes each question, solves without reading the verification oracle, interacts with the UI, observes the result, and stores assertion and latency evidence.
 
-> **MVP honesty:** the browser workflow and React dashboard are verified in this workspace. Electron main/preload compile and their security tests pass, but the Electron binary could not be downloaded in this sandbox, so the native shell and installer were not launched here. Desktop OCR has headless unit coverage only. Real Docker and live LLM calls are opt-in and were not executed.
+> **MVP honesty:** the browser workflow and React dashboard are verified in this workspace. Electron main/preload compile and their security tests pass, but the Electron binary could not be downloaded in this sandbox, so the native shell and installer were not launched here. Live Windows UIA/OCR has mocked/headless coverage only; a physical Windows target has not been verified. Real Docker and live LLM calls are opt-in and were not executed.
 
 ## What works
 
@@ -16,19 +16,19 @@ Local desktop QA automation for **developer-owned or explicitly authorized quiz 
 - Managed background runs, bounded concurrency, hard deadlines, failure thresholds, real cancellation, SSE updates, and interrupted-run recovery.
 - Overview, project CRUD/configuration, live runs, result search/filter/sort, report charts, JSON/CSV export, and capability settings.
 - Local demo with normal, delayed, incorrect-feedback, missing-element, and timeout scenarios.
-- Dedicated **Windows Desktop Autopilot** for authorized native apps: one-time calibration, unique-window targeting, foreground-focus and bounds checks, exact OCR-option answer mapping, delayed-feedback polling, completion detection, and hands-free navigation after one run confirmation.
-- Automatic safety stops for uncertain OCR, low-confidence feedback, repeated desktop questions, unverified navigation, failure thresholds, question limits, and deadlines. No guessed coordinates or OS-permission bypass.
+- Dedicated **zero-calibration Windows Desktop Autopilot** for authorized native apps: visible-window picker, Windows UI Automation with OCR fallback, dynamic question/option/input/Submit/Next/completion detection, and hands-free navigation after one run confirmation.
+- Automatic safety stops for uncertain extraction, duplicate answers, unsupported UI, stale questions, focus/target loss, out-of-window controls, repeated desktop questions, unverified navigation, timeouts, failure thresholds, question limits, and deadlines. No guessed coordinates or OS-permission bypass.
 - Opt-in Docker Python sandbox with network disabled, CPU/memory/PID limits, read-only filesystem, dropped capabilities, wall timeout, and named-container cleanup.
 
 ## Verification status — 2026-10-24
 
 | Check | Actual result |
 |---|---|
-| Current backend headless-safe tests | **49 passed, 6 skipped**; includes mocked Windows focus/bounds, exact option mapping, delayed/low-confidence feedback, repeated-question and run-limit stops |
+| Current backend headless-safe tests | **69 passed, 6 skipped**; includes mocked live UIA/OCR analysis, stale-question/control refusal, duplicate-answer and timeout stops, legacy Windows focus/bounds, and autonomous lifecycle coverage |
 | Current Electron lifecycle/preload/IPC tests | **4 passed**, including single-flight backend startup |
 | Current TypeScript + production build | Renderer and Electron main/preload builds passed; npm audit reported **0 vulnerabilities** |
 | Current real Chromium integration | **Not rerun in this fresh sandbox** because Chromium download hosts are blocked. The merged baseline previously passed all 4 real-browser tests and the six-question demo |
-| Windows graphical Autopilot | **Not verified on a physical Windows desktop**; window, OCR and loop behavior have mocked/headless tests only |
+| Windows graphical Autopilot | **Not verified on a physical Windows desktop**; live UIA/OCR analysis, window safety and loop behavior have mocked/headless tests only |
 | Docker sandbox | Mocked command/timeout/isolation tests passed; no real Docker execution claimed |
 | LLM provider | Mocked transport/validation tests passed; no live provider call claimed |
 | Native Electron launch / installer | **Not verified here**; Electron binary asset host inaccessible, and this Python lacks shared `libpython` for PyInstaller |
@@ -40,7 +40,7 @@ Local desktop QA automation for **developer-owned or explicitly authorized quiz 
 - Python **3.11, 3.12, or 3.13** (3.12 recommended), with `venv` and pip. **Python 3.14 is not supported by the pinned NumPy/Pillow wheels.** Setup selects a supported interpreter and preserves an unsupported old `.venv` under a timestamped backup name.
 - Node.js **22.12+** and npm 10+.
 - A graphical desktop for normal visible Chromium and desktop input.
-- Tesseract OCR only for desktop projects.
+- For Windows live Autopilot, the pinned `pywinauto` and `PyGetWindow` dependencies (installed by the requirements on Windows). Tesseract is needed for OCR fallback and legacy calibrated projects, not for UIA-only capture.
 - Docker only for generated-code execution. No hosted account or LLM key is required for the demo.
 
 Native packaging additionally requires a Python shared development library (for example `libpython3.11-dev`/`libpython3.12-dev` on Debian/Ubuntu) and network access to Electron release assets on the first npm install.
@@ -99,17 +99,17 @@ powershell -ExecutionPolicy Bypass -File scripts/start-dev.ps1
 
 Never commit the key or paste it into project JSON. The deterministic solver remains useful for supported local fixtures but cannot solve arbitrary questions.
 
-1. Open **Desktop Autopilot → New Autopilot**.
-2. Enter a unique authorized window title (or an application title substring) and a project name.
-3. Keep the target window visible, fixed in size/position, and calibrate absolute screen regions:
-   - Required: `question`, `answer`, `submit`.
-   - Choice questions: calibrate `option_1` through the required option number (up to six in the editor).
-   - Multi-question navigation: calibrate `next`; `complete` is strongly recommended for detecting results/completion.
-   - Optional: `feedback` and `timer`.
-4. Choose the LLM solver for arbitrary content, set question/run limits, and save.
-5. Review environment checks and confirm the run once. No further approval prompts occur during that run.
+1. Open the authorized native quiz app and keep its question window visible and restored.
+2. Open **Desktop Autopilot**. There is no calibration form and no X/Y/width/height entry.
+3. Select the window in **Select the authorized window**. Duplicate titles are rejected; use **Refresh windows** after opening or restoring the app.
+4. Confirm that you own the application or have explicit automation permission, then choose **Start live Autopilot** once.
+5. Watch the persisted live run. Cancel remains available; no further approval prompts occur during that run.
 
-On Windows, the adapter uniquely matches the title, restores/focuses the window, verifies foreground focus and region containment before every click, and maps each answer to its OCR text rather than its position. It waits for delayed feedback and stops automatically on low-confidence OCR, missing options, ambiguous windows, focus denial, out-of-bounds regions, repeated questions, failed navigation, timeouts, failure thresholds, or the question limit. Cancel remains available.
+The zero-form workflow uses bounded defaults: at most 25 questions, a 15-minute hard deadline, and a three-failure stop. The advanced project editor can change legacy/project settings, but screen regions are not used in `live` capture mode.
+
+On every screen, the adapter uses Windows UI Automation first and OCR fallback inside the same authorized window. It detects question text, radio/checkbox/list or button options, a single text/code input, enabled Submit/Next controls, timers, feedback, and completion markers. OCR fallback requires clearly readable option labels prefixed `A`–`F` or `1`–`6`; unlabelled custom-drawn/canvas answers and ambiguous multi-editor screens stop as unsupported. UIA/OCR support is not universal and must be tested with your own application.
+
+Before input, the adapter re-reads the question, uniquely rematches the intended control, verifies the current foreground window and bounds, and maps answer text to the actual control rather than a position. Text/code answers replace the detected editor contents with Ctrl+A and clipboard paste; the existing clipboard is not read. The adapter stops on low-confidence extraction, duplicate answer labels, missing controls, stale questions, focus/target loss, out-of-window controls, repeated questions, failed navigation, timeouts, failure thresholds, or the question limit. Applications that advance without answer feedback remain correctness-`unknown`, not automatically passed or failed.
 
 AI answers are not guaranteed correct. Without an independent oracle, successful clicking/submission remains distinct from verified correctness. This workflow does not bypass proctoring, monitoring, OS permissions, or assessment rules.
 
@@ -154,7 +154,7 @@ Graphical desktop and real Docker tests are explicit opt-ins and are not silentl
 .venv/bin/pytest apps/backend/tests --run-sandbox
 ```
 
-The graphical smoke test still requires an operator-provided calibrated fixture. The Docker test requires `QUIZPILOT_SANDBOX_ENABLED=true`, Docker, and a locally available `python:3.12-alpine` image; QuizPilot does not pull an image automatically.
+The legacy graphical smoke test still requires an operator-provided calibrated fixture. Live Windows Autopilot additionally needs a manual smoke test against your visible UIA/OCR-compatible application; mocked tests do not prove native control compatibility. The Docker test requires `QUIZPILOT_SANDBOX_ENABLED=true`, Docker, and a locally available `python:3.12-alpine` image; QuizPilot does not pull an image automatically.
 
 ## Configuration
 
@@ -185,7 +185,7 @@ apps/
   backend/
     app/
       api/                 # projects, runs, system, errors
-      adapters/            # shared interface, browser, calibrated desktop
+      adapters/            # shared interface, browser, live UIA/OCR, legacy calibrated desktop
       metrics/             # medians, p95, stage aggregates
       models/              # Project, TestRun, QuestionResult, AssertionResult
       reports/             # reports, CSV/JSON, overview
@@ -216,7 +216,7 @@ reports/                   # generated artifacts are ignored
 
 `GET /health` is public and contains no secrets. Every `/api` endpoint requires `X-QuizPilot-Token` (or bearer authentication). State-changing requests also enforce allowed origins; CORS is not authentication.
 
-Implemented routes: project CRUD and `POST /api/projects/{id}/validate`; run create/list/detail/cancel; `GET /api/runs/{id}/events` (SSE); report and `?format=json|csv` export; overview and system capability status. Request validation errors use a consistent `{"error":{"code","message","details"}}` shape and list endpoints paginate.
+Implemented routes: project CRUD and `POST /api/projects/{id}/validate`; run create/list/detail/cancel; `GET /api/runs/{id}/events` (SSE); report and `?format=json|csv` export; overview, system capability status, and authenticated `GET /api/system/windows` visible-window enumeration. Request validation errors use a consistent `{"error":{"code","message","details"}}` shape and list endpoints paginate.
 
 ### Status meanings
 
@@ -242,7 +242,7 @@ Timings use `time.perf_counter()` around independent stages. Browser startup is 
 - No stealth, fingerprint manipulation, monitoring evasion, arbitrary shell actions, credential storage, or OS-permission bypass is implemented.
 - Renderer navigation/new windows are restricted. The preload has no generic IPC or filesystem methods.
 - API keys and sensitive prompts are not logged. Question text needed for QA reports is persisted; cookies/passwords/arbitrary page content are not captured.
-- Desktop actions require a configured target, calibrated regions, project authorization, and immediate run confirmation. Windows additionally requires a unique matching window, verified foreground focus, and region containment before every click.
+- Desktop actions require a configured target, project authorization, and immediate run confirmation. Live Windows mode requires a unique visible window, dynamic control rematching, verified foreground focus, and current-window bounds before every click; only legacy `calibrated` projects use operator regions.
 - Generated code never runs in the FastAPI process. Without explicit Docker isolation it receives `unsupported`, not a pretend pass.
 
 ## Build a native package
@@ -275,6 +275,7 @@ Outputs are written to `apps/desktop/release/`. electron-builder includes the co
 - **Chromium unavailable:** run `.venv/bin/python -m playwright install chromium` (or the Windows equivalent). A custom binary can be configured through the environment.
 - **401 responses in web development:** use `scripts/start-web`; it shares a freshly generated token between Vite and Python. Do not put tokens in URLs.
 - **Linux PyInstaller `PythonLibraryNotFoundError`:** install the development/shared Python package appropriate to your Python version, then rebuild.
-- **Desktop OCR unavailable:** install Tesseract, grant OS permissions, use a visible graphical session, and recalibrate every region.
+- **Live Windows runtime unavailable / no windows listed:** run the backend on Windows, rerun the pinned setup to install `pywinauto`/`PyGetWindow`, restore the authorized app, and choose **Refresh windows**. Install Tesseract only if OCR fallback is needed.
+- **Live question or answer controls are unsupported:** use a UIA-accessible native control or readable OCR options prefixed `A`–`F`/`1`–`6`. The run stops rather than guessing coordinates; no calibration fallback is silently selected.
 - **Programming result is unknown:** this is expected until Docker isolation and independent tests are available.
 - **Unexpected target rejection:** check the exact hostname allowlist and resolved IP. QuizPilot does not fall back to another URL or application.

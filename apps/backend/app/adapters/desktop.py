@@ -91,15 +91,22 @@ class WindowsWindowTargetProvider(WindowTargetProvider):
         target = (window_title or application_name or "").strip()
         if not target:
             raise WindowTargetError("An explicit Windows application or window title is required")
-        needle = target.casefold()
-        candidates = [window for window in self._windows() if needle in str(getattr(window, "title", "")).casefold()]
-        exact = [window for window in candidates if str(getattr(window, "title", "")).strip().casefold() == needle]
+        needle = " ".join(target.split()).casefold()
+
+        def normalized_title(window: Any) -> str:
+            return " ".join(str(getattr(window, "title", "")).split()).casefold()
+
+        candidates = [window for window in self._windows() if needle in normalized_title(window)]
+        exact = [window for window in candidates if normalized_title(window) == needle]
         matches = exact or candidates
         if not matches:
             raise WindowTargetError(f"No visible Windows window matches {target!r}")
         if len(matches) != 1:
             raise WindowTargetError(f"Multiple Windows windows match {target!r}; use a unique full window title")
         return matches[0]
+
+    def get_window(self, application_name: str | None, window_title: str | None) -> Any:
+        return self._find_window(application_name, window_title)
 
     @staticmethod
     def _validate_regions(window: Any, regions: dict[str, dict[str, int]]) -> None:

@@ -3,6 +3,7 @@ import sys
 from fastapi import APIRouter, Request
 
 from ..adapters.desktop import desktop_availability
+from ..adapters.windows_live import list_live_windows, live_runtime_status
 
 router = APIRouter(prefix="/api", tags=["system"])
 
@@ -20,6 +21,7 @@ async def system_status(request: Request) -> dict:
         "python_version": sys.version.split()[0],
         "browser": {"available": browser_available, "detail": browser_detail},
         "desktop": desktop_availability(),
+        "live_desktop": live_runtime_status(),
         "sandbox": {"available": sandbox_available, "detail": sandbox_detail},
         "llm": {
             "configured": bool(request.app.state.settings.llm_api_key),
@@ -33,3 +35,8 @@ async def system_status(request: Request) -> dict:
             "loopback_only": not request.app.state.settings.allow_non_local_targets,
         },
     }
+
+
+@router.get("/system/windows")
+def visible_windows() -> dict:
+    return {"items": list_live_windows(), "runtime": live_runtime_status()}

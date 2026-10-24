@@ -8,6 +8,7 @@ from typing import Any
 from ..adapters.base import AdapterError, NavigationError, QuizAdapter
 from ..adapters.browser import BrowserAdapter
 from ..adapters.desktop import DesktopAdapter
+from ..adapters.windows_live import WindowsLiveAdapter
 from ..config import Settings
 from ..schemas.domain import (
     AdapterType,
@@ -203,6 +204,9 @@ class RunManager:
                     oracle=oracle,
                 )
                 timings["verification_ms"] = (time.perf_counter() - verification_started) * 1000
+                if observation and observation.timed_out:
+                    # A timed-out screen must not be navigated speculatively.
+                    should_continue = False
 
                 if should_continue:
                     self._progress(run_id, sequence, "navigating", question)
@@ -351,7 +355,8 @@ class RunManager:
                 executable_path=self.settings.browser_executable_path,
                 target_policy=self.target_policy,
             )
-        return DesktopAdapter(
+        adapter_class = WindowsLiveAdapter if config.target_config.capture_mode == "live" else DesktopAdapter
+        return adapter_class(
             target_config=config.target_config.model_dump(),
             operator_confirmed=config.safety_settings.operator_confirmed,
             operation_timeout_ms=config.timeout_settings.operation_ms,

@@ -12,6 +12,7 @@ export interface TargetConfig {
   headless: boolean;
   question_type: string | null;
   code_language: string | null;
+  capture_mode: "live" | "calibrated";
   regions: Record<string, { x: number; y: number; width: number; height: number }>;
 }
 
@@ -143,11 +144,18 @@ export interface SystemStatus {
   python_version: string;
   browser: { available: boolean; detail: string };
   desktop: { available: boolean; detail: string; supported_window_selection: string; platform: string; windows_window_targeting: boolean };
+  live_desktop: { available: boolean; detail: string; platform: string; uia_available: boolean; ocr_available: boolean };
   sandbox: { available: boolean; detail: string };
   llm: { configured: boolean; provider: string; model: string; detail: string };
   persistence: string;
   target_policy: { allowlisted_hosts: string[]; loopback_only: boolean };
 }
+export interface VisibleWindow {
+  title: string;
+  application_name: string;
+  bounds: { x: number; y: number; width: number; height: number };
+}
+export interface VisibleWindowsResponse { items: VisibleWindow[]; runtime: SystemStatus["live_desktop"] }
 export interface BackendConnection { baseUrl: string; token: string; state: "starting" | "ready" | "error" | "stopped" }
 export interface BackendStatus { state: "starting" | "ready" | "error" | "stopped"; detail: string; port: number | null }
 export interface AppInfo { name: string; version: string; platform: string; packaged: boolean }

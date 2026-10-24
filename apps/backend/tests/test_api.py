@@ -82,3 +82,31 @@ def test_run_requires_immediate_operator_confirmation(client):
     assert response.status_code == 409
     checks = response.json()["error"]["details"]["checks"]
     assert any(check["name"] == "operator_confirmation" and not check["passed"] for check in checks)
+
+
+def test_visible_windows_endpoint_is_authenticated_and_typed(client):
+    unauthorized = client.get("/api/system/windows", headers={"X-QuizPilot-Token": "wrong"})
+    assert unauthorized.status_code == 401
+    response = client.get("/api/system/windows")
+    assert response.status_code == 200
+    assert isinstance(response.json()["items"], list)
+    assert "available" in response.json()["runtime"]
+
+
+def test_live_desktop_preflight_does_not_require_calibration(client):
+    payload = project_payload(
+        adapter_type="desktop",
+        target_config={"window_title": "Owned quiz", "capture_mode": "live", "regions": {}},
+    )
+    created = client.post("/api/projects", json=payload)
+    assert created.status_code == 201, created.text
+    project = created.json()
+    assert project["target_config"]["capture_mode"] == "live"
+    response = client.post(
+        f"/api/projects/{project['id']}/validate",
+        json={"project_id": project["id"], "operator_confirmed": True},
+    )
+    assert response.status_code == 200
+    checks = response.json()["checks"]
+    assert not any(check["name"] == "calibrated_regions" for check in checks)
+    assert any(check["name"] == "zero_calibration" and check["passed"] for check in checks)

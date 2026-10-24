@@ -69,11 +69,13 @@ export function ProjectForm({ project, template, desktopOnly = false, onSaved, o
       } catch {
         return setFormError("Enter a valid absolute HTTP(S) target URL. The backend applies its allowlist again before a run.");
       }
-    } else {
+    } else if (form.target_config.capture_mode === "calibrated") {
       for (const required of ["question", "answer", "submit"]) {
         const region = form.target_config.regions[required];
         if (!region || region.width <= 0 || region.height <= 0) return setFormError(`Calibrate the ${required} region with positive width and height before saving.`);
       }
+    } else if (!(form.target_config.window_title || form.target_config.application_name)?.trim()) {
+      return setFormError("Select or enter the authorized Windows window title.");
     }
     if (!form.question_types.length) return setFormError("Enable at least one supported question type.");
     mutation.mutate(form);
@@ -85,7 +87,7 @@ export function ProjectForm({ project, template, desktopOnly = false, onSaved, o
       <SectionTitle number="01" title="Project & authorized target" description="Choose exactly which developer-owned environment this agent may inspect." />
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <Field label="Project name"><Input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Checkout quiz regression" /></Field>
-        <Field label="Adapter">{desktopOnly ? <div className="flex h-10 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-xs font-medium text-slate-600">Windows Desktop · Autopilot OCR & visible input</div> : <Select value={form.adapter_type} onChange={(event) => setForm({ ...form, adapter_type: event.target.value as ProjectCreate["adapter_type"] })}><option value="browser">Browser · Playwright</option><option value="desktop">Windows Desktop · Calibrated OCR</option></Select>}</Field>
+        <Field label="Adapter">{desktopOnly ? <div className="flex h-10 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-xs font-medium text-slate-600">Windows Desktop · Live UIA/OCR & visible input</div> : <Select value={form.adapter_type} onChange={(event) => { const adapterType = event.target.value as ProjectCreate["adapter_type"]; setForm({ ...form, adapter_type: adapterType, target_config: { ...form.target_config, capture_mode: adapterType === "desktop" ? "live" : "calibrated" } }); }}><option value="browser">Browser · Playwright</option><option value="desktop">Windows Desktop · Live UIA/OCR</option></Select>}</Field>
       </div>
       {form.adapter_type === "browser" ? <div className="mt-4 space-y-4">
         <Field label="Authorized quiz URL" hint="Loopback targets are allowed by default. Redirects and DNS results are revalidated."><Input className="font-mono text-xs" value={form.target_config.url || ""} onChange={(event) => updateTarget("url", event.target.value)} placeholder="http://127.0.0.1:8765/demo/" /></Field>
@@ -106,7 +108,8 @@ export function ProjectForm({ project, template, desktopOnly = false, onSaved, o
         <Checkbox label="Run browser headlessly" description="Off by default. Keep this unchecked to observe the visible Chromium QA session." checked={form.target_config.headless} onChange={(checked) => updateTarget("headless", checked)} />
       </div> : <div className="mt-4 space-y-4">
         <div className="grid gap-4 md:grid-cols-2"><Field label="Application name"><Input value={form.target_config.application_name || ""} onChange={(event) => updateTarget("application_name", event.target.value)} placeholder="My assessment fixture" /></Field><Field label="Window title"><Input value={form.target_config.window_title || ""} onChange={(event) => updateTarget("window_title", event.target.value)} placeholder="Quiz window" /></Field></div>
-        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-[11px] leading-5 text-amber-800"><strong>One-time operator calibration required.</strong> Keep the authorized Windows target visible in a fixed position and enter measured screen regions. On Windows, QuizPilot verifies a unique window, foreground focus and region containment before every click. After the run starts it does not prompt again; uncertain OCR, unverified navigation or timeouts stop it automatically.</div>
+        {form.target_config.capture_mode === "live" ? <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-[11px] leading-5 text-emerald-800"><strong>Zero-calibration live capture.</strong> QuizPilot detects the question, answer controls, Submit, Next and completion on every screen using Windows UI Automation with OCR fallback. No screen coordinates or regions are used.</div> : <>
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-[11px] leading-5 text-amber-800"><strong>Legacy calibrated project.</strong> Keep the authorized Windows target visible in a fixed position and enter measured screen regions. On Windows, QuizPilot verifies a unique window, foreground focus and region containment before every click.</div>
         <div className="overflow-hidden rounded-xl border border-slate-200">
           <div className="grid grid-cols-[1.2fr_repeat(4,0.7fr)] gap-2 bg-slate-50 px-3 py-2 text-[9px] font-bold uppercase tracking-wide text-slate-500"><span>Region</span><span>X</span><span>Y</span><span>Width</span><span>Height</span></div>
           {regionNames.map((name) => {
@@ -114,6 +117,7 @@ export function ProjectForm({ project, template, desktopOnly = false, onSaved, o
             return <div key={name} className="grid grid-cols-[1.2fr_repeat(4,0.7fr)] items-center gap-2 border-t border-slate-100 px-3 py-2"><span className="text-[11px] font-medium text-slate-600">{titleCase(name)}{["question", "answer", "submit"].includes(name) && <span className="text-red-500"> *</span>}</span>{(["x", "y", "width", "height"] as const).map((key) => <Input key={key} aria-label={`${name} ${key}`} type="number" min={0} className="h-8 px-2 text-[11px]" value={region[key]} onChange={(event) => updateRegion(name, key, event.target.value)} />)}</div>;
           })}
         </div>
+        </>}
       </div>}
     </section>
 

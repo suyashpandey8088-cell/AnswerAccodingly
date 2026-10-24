@@ -51,6 +51,7 @@ class TargetConfig(BaseModel):
     headless: bool = False
     question_type: str | None = Field(default=None, max_length=40)
     code_language: str | None = Field(default=None, max_length=40)
+    capture_mode: str = Field(default="calibrated", pattern="^(live|calibrated)$")
     regions: dict[str, dict[str, int]] = Field(default_factory=dict)
 
     @model_validator(mode="after")
@@ -101,9 +102,10 @@ class ProjectBase(BaseModel):
         if self.adapter_type == AdapterType.desktop:
             if not (self.target_config.application_name or self.target_config.window_title):
                 raise ValueError("A desktop project requires an application name or window title")
-            required = {"question", "answer", "submit"}
-            if not required.issubset(self.target_config.regions):
-                raise ValueError("Desktop projects require calibrated question, answer and submit regions")
+            if self.target_config.capture_mode == "calibrated":
+                required = {"question", "answer", "submit"}
+                if not required.issubset(self.target_config.regions):
+                    raise ValueError("Calibrated desktop projects require question, answer and submit regions")
         return self
 
 
