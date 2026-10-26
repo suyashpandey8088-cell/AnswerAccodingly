@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT"
-.venv/bin/pip install -r apps/backend/requirements-build.txt
-cd apps/backend
-"$ROOT/.venv/bin/pyinstaller" --clean --noconfirm quizpilot-backend.spec
-printf '\nBundled backend created at apps/backend/dist/quizpilot-backend\n'

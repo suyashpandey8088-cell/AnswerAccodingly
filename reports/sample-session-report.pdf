@@ -1,0 +1,1143 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R 24 0 R] /Count 11 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2014 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 1/11\)) Tj
+T*
+T*
+(QuizPilot AI   Study & Performance Report) Tj
+T*
+() Tj
+T*
+(- Session Title: CS-402 Distributed Systems & Security   Synthetic Practice Run) Tj
+T*
+(- Session ID: sess_sample_synthetic_2026) Tj
+T*
+(- Report ID: rep_sess_sample_synthetic_2026) Tj
+T*
+(- Generated At: 2026-10-26T07:12:27.394Z) Tj
+T*
+() Tj
+T*
+(---) Tj
+T*
+() Tj
+T*
+(A. Executive Summary) Tj
+T*
+() Tj
+T*
+(| Metric | Value |) Tj
+T*
+(| :--- | :--- |) Tj
+T*
+(| Total Questions Processed | 11 |) Tj
+T*
+(| Answered / Unanswered | 10 answered / 1 unanswered |) Tj
+T*
+(| Verified Correct | 8 |) Tj
+T*
+(| Verified Incorrect | 1 |) Tj
+T*
+(| AI-Suggested \(Unverified\) | 1 |) Tj
+T*
+(| Uncertain / Ambiguous | 1 |) Tj
+T*
+(| Unsupported Layout | 0 |) Tj
+T*
+(| Verified Performance Score | 88.9% \(8/9 verified\) |) Tj
+T*
+() Tj
+T*
+(> Scoring Integrity Note: Calculated strictly over 9 officially verified question\(s\)) Tj
+T*
+(\(8/9\). Excluded 2 unverified/AI-suggested/uncertain question\(s\) from the score) Tj
+T*
+(denominator.) Tj
+T*
+() Tj
+T*
+(Topic Coverage) Tj
+T*
+(- Consensus & Replication) Tj
+T*
+(- Web & Browser Security) Tj
+T*
+(- Transactions & Indexing) Tj
+T*
+(- HTTP & Transport Protocols) Tj
+T*
+(- Complexity & Graph Algorithms) Tj
+T*
+(- Fault Tolerance & Idempotency) Tj
+T*
+(- Authentication & Cryptography) Tj
+T*
+() Tj
+T*
+(Principal Strengths) Tj
+T*
+(- Consensus & Replication \(100% verified accuracy\)) Tj
+T*
+(- Web & Browser Security \(100% verified accuracy\)) Tj
+T*
+(- Transactions & Indexing \(100% verified accuracy\)) Tj
+T*
+(- Complexity & Graph Algorithms \(100% verified accuracy\)) Tj
+T*
+() Tj
+T*
+(Principal Weaknesses & Knowledge Gaps) Tj
+T*
+(- HTTP & Transport Protocols \(1 verified error\(s\), 50% accuracy\)) Tj
+T*
+(- Fault Tolerance & Idempotency \(1 unverified/uncertain, 0 unanswered\)) Tj
+T*
+(- Authentication & Cryptography \(1 unverified/uncertain, 0 unanswered\)) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 2984 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 2/11\)) Tj
+T*
+T*
+(---) Tj
+T*
+() Tj
+T*
+(B. Complete Question Bank) Tj
+T*
+() Tj
+T*
+(Q1. [q_std_1] According to the CAP theorem, when a distributed data store experiences a) Tj
+T*
+(network partition \(P\), which trade-off is unavoidable?) Tj
+T*
+(- Type: single_choice | Subject: Distributed Systems | Topic: Consensus & Replication) Tj
+T*
+(\(Raft, Paxos & Quorum Consistency\)) Tj
+T*
+(- Difficulty: MEDIUM \(5/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_cap_a\): Choosing between linearizable Consistency \(C\) and 100% Availability) Tj
+T*
+(\(A\)) Tj
+T*
+(  - B \(opt_cap_b\): Choosing between Durability and Horizontal Sharding) Tj
+T*
+(  - C \(opt_cap_c\): Guaranteeing both strict linearizability and zero-latency writes on) Tj
+T*
+(all nodes) Tj
+T*
+(  - D \(opt_cap_d\): Disabling TLS encryption to preserve TCP throughput) Tj
+T*
+(- Selected Response: opt_cap_a) Tj
+T*
+(- Official Correct Answer: opt_cap_a) Tj
+T*
+(- Explanation: During a network partition \(P\), nodes that cannot communicate must either) Tj
+T*
+(reject/delay requests to preserve linearizable Consistency \(CP\) or serve potentially) Tj
+T*
+(stale data to remain Available \(AP\).) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Consensus & Replication" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q2. [q_std_2] In Chrome Extension Manifest V3, which component replaces persistent) Tj
+T*
+(background pages for event-driven lifecycle coordination?) Tj
+T*
+(- Type: single_choice | Subject: Cybersecurity | Topic: Web & Browser Security \(CSP,) Tj
+T*
+(XSS, CSRF & Same-Origin Policy\)) Tj
+T*
+(- Difficulty: EASY \(5/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_mv3_a\): DOM Frameset Controller) Tj
+T*
+(  - B \(opt_mv3_b\): Background Service Worker) Tj
+T*
+(  - C \(opt_mv3_c\): ActiveX NPAPI Plugin) Tj
+T*
+(  - D \(opt_mv3_d\): Unrestricted Synchronous XMLHttpRequest Worker) Tj
+T*
+(- Selected Response: opt_mv3_b) Tj
+T*
+(- Official Correct Answer: opt_mv3_b) Tj
+T*
+(- Explanation: Manifest V3 replaces persistent background pages with event-driven) Tj
+T*
+(Service Workers to improve security and memory efficiency.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Web & Browser Security" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3054 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 3/11\)) Tj
+T*
+T*
+() Tj
+T*
+(Q3. [q_std_3] Which database recovery mechanism guarantees Atomicity and Durability by) Tj
+T*
+(flushing redo/undo log records to disk before dirty pages are written?) Tj
+T*
+(- Type: single_choice | Subject: Database Systems | Topic: Transactions & Indexing) Tj
+T*
+(\(ACID, Isolation Levels & B-Tree/WAL\)) Tj
+T*
+(- Difficulty: MEDIUM \(5/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_wal_a\): Write-Ahead Logging \(WAL\)) Tj
+T*
+(  - B \(opt_wal_b\): Read Uncommitted Dirty Cache) Tj
+T*
+(  - C \(opt_wal_c\): UDP Broadcast Gossip) Tj
+T*
+(  - D \(opt_wal_d\): Client-Side LocalStorage Polling) Tj
+T*
+(- Selected Response: opt_wal_a) Tj
+T*
+(- Official Correct Answer: opt_wal_a) Tj
+T*
+(- Explanation: Write-Ahead Logging \(WAL\) ensures that all modifications are recorded in) Tj
+T*
+(stable log storage before data pages are updated in-place.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Transactions & Indexing" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q4. [q_std_4] Which of the following HTTP methods are defined as idempotent by RFC 9110?) Tj
+T*
+(\(Select all that apply\)) Tj
+T*
+(- Type: multiple_choice | Subject: Networking & Systems | Topic: HTTP & Transport) Tj
+T*
+(Protocols \(TCP/UDP, HTTP/2, HTTP/3 & DNS\)) Tj
+T*
+(- Difficulty: HARD \(5.8/10\) | Importance Priority: HIGH) Tj
+T*
+(- Verification Status: verified_incorrect | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_http_get\): GET) Tj
+T*
+(  - B \(opt_http_put\): PUT) Tj
+T*
+(  - C \(opt_http_post\): POST) Tj
+T*
+(  - D \(opt_http_delete\): DELETE) Tj
+T*
+(- Selected Response: opt_http_get, opt_http_put) Tj
+T*
+(- Official Correct Answer: opt_http_get, opt_http_put, opt_http_delete) Tj
+T*
+(- Explanation: Per RFC 9110 Section 9.2.2, GET, HEAD, OPTIONS, TRACE, PUT, and DELETE) Tj
+T*
+(are idempotent; POST is not idempotent.) Tj
+T*
+(- Priority Rationale: High Priority: Verified error on a hard-difficulty foundational) Tj
+T*
+(concept in "HTTP & Transport Protocols".) Tj
+T*
+(- Recommended Revision Action: Compare your selected response \(opt_http_get,) Tj
+T*
+(opt_http_put\) against the verified key \(opt_http_get, opt_http_put, opt_http_delete\) and) Tj
+T*
+(restudy "TCP/UDP, HTTP/2, HTTP/3 & DNS".) Tj
+T*
+() Tj
+T*
+(Q5. [q_std_5] Which defense-in-depth controls directly mitigate Cross-Site Scripting) Tj
+T*
+(\(XSS\) when rendering untrusted page text in a browser dashboard? \(Select all that apply\)) Tj
+T*
+(- Type: multiple_choice | Subject: Cybersecurity | Topic: Web & Browser Security \(CSP,) Tj
+T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 3096 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 4/11\)) Tj
+T*
+T*
+(XSS, CSRF & Same-Origin Policy\)) Tj
+T*
+(- Difficulty: MEDIUM \(6.8/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_xss_a\): Context-aware HTML output encoding and safe DOM APIs \(textContent\)) Tj
+T*
+(  - B \(opt_xss_b\): Strict Content Security Policy \(CSP\) disallowing unsafe-inline) Tj
+T*
+(scripts) Tj
+T*
+(  - C \(opt_xss_c\): Passing raw extracted HTML directly into innerHTML and eval\(\)) Tj
+T*
+(  - D \(opt_xss_d\): Sanitizing and stripping executable script/iframe tags prior to) Tj
+T*
+(storage) Tj
+T*
+(- Selected Response: opt_xss_a, opt_xss_b, opt_xss_d) Tj
+T*
+(- Official Correct Answer: opt_xss_a, opt_xss_b, opt_xss_d) Tj
+T*
+(- Explanation: Safe DOM sinks \(textContent\), strict CSP headers, and input sanitization) Tj
+T*
+(prevent untrusted data from executing as code.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Web & Browser Security" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q6. [q_std_6] True or False: Binary search over a sorted array of n elements has a) Tj
+T*
+(worst-case time complexity of O\(log n\).) Tj
+T*
+(- Type: true_false | Subject: Algorithms & Data Structures | Topic: Complexity & Graph) Tj
+T*
+(Algorithms \(Asymptotic Analysis, Trees & Shortest Paths\)) Tj
+T*
+(- Difficulty: EASY \(4/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_tf_true\): True) Tj
+T*
+(  - B \(opt_tf_false\): False) Tj
+T*
+(- Selected Response: opt_tf_true) Tj
+T*
+(- Official Correct Answer: opt_tf_true) Tj
+T*
+(- Explanation: Binary search halves the remaining search space on each comparison,) Tj
+T*
+(completing in at most floor\(log2\(n\)\) + 1 comparisons.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Complexity & Graph Algorithms" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q7. [q_std_7] True or False: In Raft consensus, a follower node can unilaterally commit) Tj
+T*
+(log entries without a majority quorum if its local clock is synchronized via NTP.) Tj
+T*
+(- Type: true_false | Subject: Distributed Systems | Topic: Consensus & Replication) Tj
+T*
+(\(Raft, Paxos & Quorum Consistency\)) Tj
+T*
+(- Difficulty: MEDIUM \(6.3/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_raft_true\): True) Tj
+T*
+ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 3225 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 5/11\)) Tj
+T*
+T*
+(  - B \(opt_raft_false\): False) Tj
+T*
+(- Selected Response: opt_raft_false) Tj
+T*
+(- Official Correct Answer: opt_raft_false) Tj
+T*
+(- Explanation: Raft safety requires a leader elected by a majority quorum and) Tj
+T*
+(replication across a majority of cluster nodes before committing any log entry.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Consensus & Replication" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q8. [q_std_8] Enter the numeric HTTP status code returned when a client exceeds the) Tj
+T*
+(permitted request rate limit \(Too Many Requests\):) Tj
+T*
+(- Type: text_input | Subject: Networking & Systems | Topic: HTTP & Transport Protocols) Tj
+T*
+(\(TCP/UDP, HTTP/2, HTTP/3 & DNS\)) Tj
+T*
+(- Difficulty: EASY \(5.5/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Selected Response: 429) Tj
+T*
+(- Official Correct Answer: 429) Tj
+T*
+(- Explanation: RFC 6585 defines HTTP status code 429 as Too Many Requests.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "HTTP & Transport Protocols" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q9. [q_std_9] In Raft leader election, what minimum fraction of cluster votes must a) Tj
+T*
+(candidate receive to become leader? \(Type "majority"\)) Tj
+T*
+(- Type: text_input | Subject: Distributed Systems | Topic: Consensus & Replication) Tj
+T*
+(\(Raft, Paxos & Quorum Consistency\)) Tj
+T*
+(- Difficulty: MEDIUM \(6.5/10\) | Importance Priority: LOW) Tj
+T*
+(- Verification Status: verified_correct | Source: official_feedback \(Official In-Quiz) Tj
+T*
+(Practice Feedback\) | Confidence: 99%) Tj
+T*
+(- Selected Response: majority) Tj
+T*
+(- Official Correct Answer: majority) Tj
+T*
+(- Explanation: A Raft candidate must receive votes from a strict majority \(\(N/2\) + 1\) of) Tj
+T*
+(nodes in the cluster.) Tj
+T*
+(- Priority Rationale: Low Priority: Verified correct response on an isolated or already) Tj
+T*
+(mastered detail in "Consensus & Replication" with no recurring errors.) Tj
+T*
+(- Recommended Revision Action: Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(Q10. [q_std_10] When designing retry logic for transient RPC timeouts in distributed) Tj
+T*
+(microservices, which strategy prevents synchronized retry storms across clients?) Tj
+T*
+(- Type: single_choice | Subject: Distributed Systems | Topic: Fault Tolerance &) Tj
+T*
+(Idempotency \(Retries, Backoff & Circuit Breakers\)) Tj
+T*
+(- Difficulty: MEDIUM \(5/10\) | Importance Priority: MEDIUM) Tj
+T*
+(- Verification Status: ai_suggested | Source: instructor_note \(CS-402 Instructor Lecture) Tj
+T*
+(Notes   Fault Tolerance Week 4\) | Confidence: 85%) Tj
+T*
+(- Options:) Tj
+T*
+ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 3141 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 6/11\)) Tj
+T*
+T*
+(  - A \(opt_retry_a\): Exponential backoff combined with randomized jitter and bounded) Tj
+T*
+(retry limits) Tj
+T*
+(  - B \(opt_retry_b\): Unbounded zero-delay tight-loop retries on every client thread) Tj
+T*
+(  - C \(opt_retry_c\): Fixed 100ms synchronized cron retries across all worker nodes) Tj
+T*
+(- Selected Response: opt_retry_a) Tj
+T*
+(- Official Correct Answer: _Not verified by an official key_) Tj
+T*
+(- Explanation: Instructor Explanation: Exponential backoff with randomized jitter) Tj
+T*
+(spreads out client retries and prevents cascading thundering-herd overload. \(Note:) Tj
+T*
+(Sourced from instructor lecture notes; not yet verified by an official grading key.\)) Tj
+T*
+(- Priority Rationale: Medium Priority: Supporting concept in "Fault Tolerance &) Tj
+T*
+(Idempotency" with ai suggested status requiring authoritative verification.) Tj
+T*
+(- Recommended Revision Action: Validate the AI-proposed candidate answer against an) Tj
+T*
+(official answer key before relying on it for exam preparation.) Tj
+T*
+() Tj
+T*
+(Q11. [q_std_11] Which experimental quantum-resistant lattice parameter set is optimal) Tj
+T*
+(for custom sub-millisecond IoT mesh handshakes without hardware acceleration?) Tj
+T*
+(- Type: single_choice | Subject: Cybersecurity | Topic: Authentication & Cryptography) Tj
+T*
+(\(OAuth2, JWT, TLS & Key Management\)) Tj
+T*
+(- Difficulty: HARD \(5/10\) | Importance Priority: MEDIUM) Tj
+T*
+(- Verification Status: uncertain | Source: approved_bank \(Community Study Bank) Tj
+T*
+(\(Conflicting Errata #11\)\) | Confidence: 25%) Tj
+T*
+(- Options:) Tj
+T*
+(  - A \(opt_q_a\): Parameter Set Alpha-512) Tj
+T*
+(  - B \(opt_q_b\): Parameter Set Beta-768) Tj
+T*
+(  - C \(opt_q_c\): Parameter Set Gamma-1024) Tj
+T*
+(- Selected Response: _None \(Unanswered\)_) Tj
+T*
+(- Official Correct Answer: _Not verified by an official key_) Tj
+T*
+(- Explanation: Conflicting reference key: Study Guide v1 specifies Alpha-512 whereas) Tj
+T*
+(Errata Sheet v2 specifies Beta-768.) Tj
+T*
+(- Priority Rationale: Medium Priority: Supporting concept in "Authentication &) Tj
+T*
+(Cryptography" with uncertain status requiring authoritative verification.) Tj
+T*
+(- Recommended Revision Action: Obtain an authoritative explanation or answer key to) Tj
+T*
+(resolve this ambiguous/unanswered item.) Tj
+T*
+() Tj
+T*
+(---) Tj
+T*
+() Tj
+T*
+(C. Important-Question Classification) Tj
+T*
+() Tj
+T*
+(> Methodology: Questions are classified into High, Medium, and Low priority using) Tj
+T*
+(transparent criteria: \(1\) Verified errors or repeated concepts across supplied materials) Tj
+T*
+(= High; \(2\) Unverified AI suggestions, uncertain keys, or unanswered items = Medium; \(3\)) Tj
+T*
+(Isolated details already verified correct = Low.) Tj
+T*
+(>) Tj
+T*
+(> Disclaimer: Priority ratings reflect conceptual centrality and observed session gaps.) Tj
+T*
+(QuizPilot AI does not claim that any specific question will appear on a future) Tj
+T*
+(examination without validated historical frequency evidence.) Tj
+T*
+ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 3651 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 7/11\)) Tj
+T*
+T*
+() Tj
+T*
+(- High Priority: 1 | Medium Priority: 2 | Low Priority: 8) Tj
+T*
+() Tj
+T*
+(- [HIGH] q_std_4 \(HTTP & Transport Protocols   hard\): High Priority: Verified error on a) Tj
+T*
+(hard-difficulty foundational concept in "HTTP & Transport Protocols". -> *Action:*) Tj
+T*
+(Compare your selected response \(opt_http_get, opt_http_put\) against the verified key) Tj
+T*
+(\(opt_http_get, opt_http_put, opt_http_delete\) and restudy "TCP/UDP, HTTP/2, HTTP/3 &) Tj
+T*
+(DNS".) Tj
+T*
+(- [MEDIUM] q_std_10 \(Fault Tolerance & Idempotency   medium\): Medium Priority:) Tj
+T*
+(Supporting concept in "Fault Tolerance & Idempotency" with ai suggested status requiring) Tj
+T*
+(authoritative verification. -> *Action:* Validate the AI-proposed candidate answer) Tj
+T*
+(against an official answer key before relying on it for exam preparation.) Tj
+T*
+(- [MEDIUM] q_std_11 \(Authentication & Cryptography   hard\): Medium Priority: Supporting) Tj
+T*
+(concept in "Authentication & Cryptography" with uncertain status requiring authoritative) Tj
+T*
+(verification. -> *Action:* Obtain an authoritative explanation or answer key to resolve) Tj
+T*
+(this ambiguous/unanswered item.) Tj
+T*
+(- [LOW] q_std_1 \(Consensus & Replication   medium\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "Consensus & Replication" with no) Tj
+T*
+(recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+(- [LOW] q_std_2 \(Web & Browser Security   easy\): Low Priority: Verified correct response) Tj
+T*
+(on an isolated or already mastered detail in "Web & Browser Security" with no recurring) Tj
+T*
+(errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+(- [LOW] q_std_3 \(Transactions & Indexing   medium\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "Transactions & Indexing" with no) Tj
+T*
+(recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+(- [LOW] q_std_5 \(Web & Browser Security   medium\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "Web & Browser Security" with no) Tj
+T*
+(recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+(- [LOW] q_std_6 \(Complexity & Graph Algorithms   easy\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "Complexity & Graph Algorithms") Tj
+T*
+(with no recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review) Tj
+T*
+(only.) Tj
+T*
+(- [LOW] q_std_7 \(Consensus & Replication   medium\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "Consensus & Replication" with no) Tj
+T*
+(recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+(- [LOW] q_std_8 \(HTTP & Transport Protocols   easy\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "HTTP & Transport Protocols" with) Tj
+T*
+(no recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+(- [LOW] q_std_9 \(Consensus & Replication   medium\): Low Priority: Verified correct) Tj
+T*
+(response on an isolated or already mastered detail in "Consensus & Replication" with no) Tj
+T*
+(recurring errors. -> *Action:* Schedule lightweight 14-day maintenance review only.) Tj
+T*
+() Tj
+T*
+(---) Tj
+T*
+() Tj
+T*
+(D. Performance Analysis) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+18 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 19 0 R >>
+endobj
+19 0 obj
+<< /Length 2747 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 8/11\)) Tj
+T*
+T*
+(- Verified Accuracy: 88.9% \(8/9\)) Tj
+T*
+(- Excluded from Score: 2 question\(s\) \(Questions with verificationStatus in) Tj
+T*
+({ai_suggested, uncertain, unanswered, unsupported} without an authoritative answer key) Tj
+T*
+(are excluded from the verified accuracy denominator to prevent unverified guesses from) Tj
+T*
+(skewing the score.\)) Tj
+T*
+(- Average Time per Question: 5 ms \(Total: 55 ms\)) Tj
+T*
+(- Confidence Calibration: Detected 1 high-confidence incorrect response\(s\)) Tj
+T*
+(\(overconfidence alert\). Prioritize reviewing those misconceptions.) Tj
+T*
+() Tj
+T*
+(Accuracy by Topic) Tj
+T*
+(| Subject | Topic | Total | Verified | Correct | Incorrect | Uncertain/AI | Verified) Tj
+T*
+(Accuracy | Avg Time \(ms\) |) Tj
+T*
+(| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |) Tj
+T*
+(| Distributed Systems | Consensus & Replication | 3 | 3 | 3 | 0 | 0 | 100% | 5 |) Tj
+T*
+(| Cybersecurity | Web & Browser Security | 2 | 2 | 2 | 0 | 0 | 100% | 5 |) Tj
+T*
+(| Database Systems | Transactions & Indexing | 1 | 1 | 1 | 0 | 0 | 100% | 5 |) Tj
+T*
+(| Networking & Systems | HTTP & Transport Protocols | 2 | 2 | 1 | 1 | 0 | 50% | 5 |) Tj
+T*
+(| Algorithms & Data Structures | Complexity & Graph Algorithms | 1 | 1 | 1 | 0 | 0 |) Tj
+T*
+(100% | 5 |) Tj
+T*
+(| Distributed Systems | Fault Tolerance & Idempotency | 1 | 0 | 0 | 0 | 1 | Unverified |) Tj
+T*
+(5 |) Tj
+T*
+(| Cybersecurity | Authentication & Cryptography | 1 | 0 | 0 | 0 | 1 | Unverified | 5 |) Tj
+T*
+() Tj
+T*
+(Error Rate by Question Type) Tj
+T*
+(| Question Type | Total | Verified Total | Verified Incorrect | Verified Error Rate |) Tj
+T*
+(Uncertain/AI |) Tj
+T*
+(| :--- | :---: | :---: | :---: | :---: | :---: |) Tj
+T*
+(| single_choice | 5 | 3 | 0 | 0% | 2 |) Tj
+T*
+(| multiple_choice | 2 | 2 | 1 | 50% | 0 |) Tj
+T*
+(| true_false | 2 | 2 | 0 | 0% | 0 |) Tj
+T*
+(| text_input | 2 | 2 | 0 | 0% | 0 |) Tj
+T*
+() Tj
+T*
+(---) Tj
+T*
+() Tj
+T*
+(E. Personalized Preparation Plan) Tj
+T*
+() Tj
+T*
+(- Learner Daily Study Budget: 75 minutes/day) Tj
+T*
+(- Target Assessment Date: 2026-11-09 \(14 days remaining\)) Tj
+T*
+(- Recommended Revision Order: HTTP & Transport Protocols   Fault Tolerance & Idempotency) Tj
+T*
+(  Authentication & Cryptography   Consensus & Replication   Web & Browser Security  ) Tj
+T*
+(Transactions & Indexing   Complexity & Graph Algorithms) Tj
+T*
+() Tj
+T*
+(Priority Topics for Revision) Tj
+T*
+(1. HTTP & Transport Protocols \(25 min/day\)   Prioritized due to 1 verified error\(s\).) Tj
+T*
+(2. Fault Tolerance & Idempotency \(25 min/day\)   Prioritized due to 1) Tj
+T*
+(unverified/uncertain item\(s\).) Tj
+T*
+ET
+endstream
+endobj
+20 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 21 0 R >>
+endobj
+21 0 obj
+<< /Length 3220 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 9/11\)) Tj
+T*
+T*
+(3. Authentication & Cryptography \(25 min/day\)   Prioritized due to 1) Tj
+T*
+(unverified/uncertain item\(s\).) Tj
+T*
+(4. Consensus & Replication \(25 min/day\)   Prioritized due to 3 foundational question\(s\)) Tj
+T*
+(reviewed.) Tj
+T*
+(5. Web & Browser Security \(25 min/day\)   Prioritized due to 2 foundational question\(s\)) Tj
+T*
+(reviewed.) Tj
+T*
+(6. Transactions & Indexing \(25 min/day\)   Prioritized due to 1 foundational question\(s\)) Tj
+T*
+(reviewed.) Tj
+T*
+(7. Complexity & Graph Algorithms \(25 min/day\)   Prioritized due to 1 foundational) Tj
+T*
+(question\(s\) reviewed.) Tj
+T*
+() Tj
+T*
+(Suggested Daily Study Schedule) Tj
+T*
+(- Day 1 \(2026-10-26\) [75 min]   Focus: HTTP & Transport Protocols, Fault Tolerance &) Tj
+T*
+(Idempotency) Tj
+T*
+(    - Review official explanations & error logs for HTTP & Transport Protocols \(30 min\)) Tj
+T*
+(  - Complete targeted active-recall drill on HTTP & Transport Protocols & Fault) Tj
+T*
+(Tolerance & Idempotency \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+(- Day 2 \(2026-10-27\) [75 min]   Focus: Fault Tolerance & Idempotency, Authentication &) Tj
+T*
+(Cryptography) Tj
+T*
+(    - Review official explanations & error logs for Fault Tolerance & Idempotency \(30) Tj
+T*
+(min\)) Tj
+T*
+(  - Complete targeted active-recall drill on Fault Tolerance & Idempotency &) Tj
+T*
+(Authentication & Cryptography \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+(- Day 3 \(2026-10-28\) [75 min]   Focus: Authentication & Cryptography, Consensus &) Tj
+T*
+(Replication) Tj
+T*
+(    - Review official explanations & error logs for Authentication & Cryptography \(30) Tj
+T*
+(min\)) Tj
+T*
+(  - Complete targeted active-recall drill on Authentication & Cryptography & Consensus &) Tj
+T*
+(Replication \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+(- Day 4 \(2026-10-29\) [75 min]   Focus: Consensus & Replication, Web & Browser Security) Tj
+T*
+(    - Review official explanations & error logs for Consensus & Replication \(30 min\)) Tj
+T*
+(  - Complete targeted active-recall drill on Consensus & Replication & Web & Browser) Tj
+T*
+(Security \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+(- Day 5 \(2026-10-30\) [75 min]   Focus: Web & Browser Security, Transactions & Indexing) Tj
+T*
+(    - Review official explanations & error logs for Web & Browser Security \(30 min\)) Tj
+T*
+(  - Complete targeted active-recall drill on Web & Browser Security & Transactions &) Tj
+T*
+(Indexing \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+(- Day 6 \(2026-10-31\) [75 min]   Focus: Transactions & Indexing, Complexity & Graph) Tj
+T*
+(Algorithms) Tj
+T*
+(    - Review official explanations & error logs for Transactions & Indexing \(30 min\)) Tj
+T*
+(  - Complete targeted active-recall drill on Transactions & Indexing & Complexity &) Tj
+T*
+ET
+endstream
+endobj
+22 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 23 0 R >>
+endobj
+23 0 obj
+<< /Length 3276 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 10/11\)) Tj
+T*
+T*
+(Graph Algorithms \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+(- Day 7 \(2026-11-01\) [75 min]   Focus: Complexity & Graph Algorithms, HTTP & Transport) Tj
+T*
+(Protocols) Tj
+T*
+(    - Review official explanations & error logs for Complexity & Graph Algorithms \(30) Tj
+T*
+(min\)) Tj
+T*
+(  - Complete targeted active-recall drill on Complexity & Graph Algorithms & HTTP &) Tj
+T*
+(Transport Protocols \(30 min\)) Tj
+T*
+(  - Resolve uncertain/unverified flashcards in Spaced Repetition Queue \(15 min\)) Tj
+T*
+() Tj
+T*
+(Spaced-Repetition Recommendations) Tj
+T*
+(- HTTP & Transport Protocols \(immediate_24h, intervals: Day 1, Day 3, Day 7, Day 14, Day) Tj
+T*
+(30\): Contains 1 verified incorrect response\(s\); requires immediate 24-hour re-testing) Tj
+T*
+(before extending intervals. \(Questions: q_std_4, q_std_8\)) Tj
+T*
+(- Fault Tolerance & Idempotency \(short_term_3d, intervals: Day 2, Day 5, Day 10, Day) Tj
+T*
+(21\): Contains 1 unverified or unanswered question\(s\); verify against official key within) Tj
+T*
+(48-72 hours. \(Questions: q_std_10\)) Tj
+T*
+(- Authentication & Cryptography \(short_term_3d, intervals: Day 2, Day 5, Day 10, Day) Tj
+T*
+(21\): Contains 1 unverified or unanswered question\(s\); verify against official key within) Tj
+T*
+(48-72 hours. \(Questions: q_std_11\)) Tj
+T*
+(- Consensus & Replication \(consolidation_14d, intervals: Day 7, Day 14, Day 30\): All) Tj
+T*
+(verified items answered accurately; schedule maintenance recall at 7 and 14 days.) Tj
+T*
+(\(Questions: q_std_1, q_std_7, q_std_9\)) Tj
+T*
+(- Web & Browser Security \(consolidation_14d, intervals: Day 7, Day 14, Day 30\): All) Tj
+T*
+(verified items answered accurately; schedule maintenance recall at 7 and 14 days.) Tj
+T*
+(\(Questions: q_std_2, q_std_5\)) Tj
+T*
+(- Transactions & Indexing \(consolidation_14d, intervals: Day 7, Day 14, Day 30\): All) Tj
+T*
+(verified items answered accurately; schedule maintenance recall at 7 and 14 days.) Tj
+T*
+(\(Questions: q_std_3\)) Tj
+T*
+(- Complexity & Graph Algorithms \(consolidation_14d, intervals: Day 7, Day 14, Day 30\):) Tj
+T*
+(All verified items answered accurately; schedule maintenance recall at 7 and 14 days.) Tj
+T*
+(\(Questions: q_std_6\)) Tj
+T*
+() Tj
+T*
+(Follow-Up Mock-Test Plan) Tj
+T*
+(- Timing: After completing Day 3 revision blocks \(3 days from today\)) Tj
+T*
+(- Focus Areas: HTTP & Transport Protocols, Fault Tolerance & Idempotency, Authentication) Tj
+T*
+(& Cryptography) Tj
+T*
+(- Target Conditions: Timed practice session with official answer key loaded, targeting) Tj
+T*
+(>= 90% verified accuracy and 0 unresolved high-priority gaps.) Tj
+T*
+() Tj
+T*
+(Criteria for Measuring Improvement) Tj
+T*
+(- [ ] Achieve >= 90% accuracy on questions backed by an official answer key.) Tj
+T*
+(- [ ] Reduce High-Confidence Incorrect responses \(overconfidence errors\) to 0.) Tj
+T*
+(- [ ] Convert 100% of Uncertain / AI-Suggested items in High-Priority topics to Verified) Tj
+T*
+(status using authoritative references.) Tj
+T*
+(- [ ] Maintain average response time under 45 seconds per question without skipping) Tj
+T*
+ET
+endstream
+endobj
+24 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 25 0 R >>
+endobj
+25 0 obj
+<< /Length 194 >>
+stream
+BT
+/F1 9.5 Tf
+42 752 Td
+14 TL
+(QuizPilot AI Study Report   CS-402 Distributed Systems & Security   Synthetic Practice Run \(Page 11/11\)) Tj
+T*
+T*
+(multi-select option checks.) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+xref
+0 26
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000184 00000 n 
+0000000254 00000 n 
+0000000380 00000 n 
+0000002446 00000 n 
+0000002572 00000 n 
+0000005608 00000 n 
+0000005734 00000 n 
+0000008840 00000 n 
+0000008968 00000 n 
+0000012117 00000 n 
+0000012245 00000 n 
+0000015523 00000 n 
+0000015651 00000 n 
+0000018845 00000 n 
+0000018973 00000 n 
+0000022677 00000 n 
+0000022805 00000 n 
+0000025605 00000 n 
+0000025733 00000 n 
+0000029006 00000 n 
+0000029134 00000 n 
+0000032463 00000 n 
+0000032591 00000 n 
+trailer
+<< /Size 26 /Root 1 0 R >>
+startxref
+32837
+%%EOF
