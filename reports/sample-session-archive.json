@@ -1,0 +1,1362 @@
+{
+  "schemaVersion": "1.0.0",
+  "exportedAt": "2026-10-26T07:12:27.396Z",
+  "application": "QuizPilot AI",
+  "session": {
+    "sessionId": "sess_sample_synthetic_2026",
+    "title": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+    "profileName": "Authorized Practice Default",
+    "targetUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+    "status": "completed",
+    "startedAt": "2026-10-26T07:12:27.291Z",
+    "updatedAt": "2026-10-26T07:12:27.393Z",
+    "completedAt": "2026-10-26T07:12:27.393Z",
+    "elapsedMs": 144,
+    "totalDetectedQuestions": 11,
+    "processedQuestionIds": [
+      "q_std_1",
+      "q_std_2",
+      "q_std_3",
+      "q_std_4",
+      "q_std_5",
+      "q_std_6",
+      "q_std_7",
+      "q_std_8",
+      "q_std_9",
+      "q_std_10",
+      "q_std_11"
+    ],
+    "recoverableErrorCount": 0,
+    "uncertainAnswerCount": 2,
+    "unsupportedQuestionCount": 0,
+    "events": [
+      {
+        "id": "evt_1_mvox5rq3",
+        "sessionId": "sess_sample_synthetic_2026",
+        "timestamp": "2026-10-26T07:12:27.291Z",
+        "level": "info",
+        "code": "SESSION_STARTED",
+        "message": "Started practice session \"CS-402 Distributed Systems & Security — Synthetic Practice Run\" on localhost."
+      },
+      {
+        "id": "evt_2_mvox5rsg",
+        "sessionId": "sess_sample_synthetic_2026",
+        "timestamp": "2026-10-26T07:12:27.376Z",
+        "level": "info",
+        "code": "UNCERTAIN_ANSWER_FLAGGED",
+        "message": "Question q_std_11 marked as uncertain (Conflicting reference key: Study Guide v1 specifies Alpha-512 whereas Errata Sheet v2 specifies Beta-768.).",
+        "questionId": "q_std_11"
+      },
+      {
+        "id": "evt_3_mvox5rsp",
+        "sessionId": "sess_sample_synthetic_2026",
+        "timestamp": "2026-10-26T07:12:27.385Z",
+        "level": "info",
+        "code": "PRACTICE_SUBMITTED",
+        "message": "Submitted authorized practice quiz to reveal official feedback."
+      },
+      {
+        "id": "evt_4_mvox5rsx",
+        "sessionId": "sess_sample_synthetic_2026",
+        "timestamp": "2026-10-26T07:12:27.393Z",
+        "level": "info",
+        "code": "SESSION_COMPLETED",
+        "message": "Completed practice session with 11 processed question(s)."
+      }
+    ]
+  },
+  "report": {
+    "reportId": "rep_sess_sample_synthetic_2026",
+    "sessionId": "sess_sample_synthetic_2026",
+    "generatedAt": "2026-10-26T07:12:27.394Z",
+    "sessionTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+    "executiveSummary": {
+      "totalQuestionsProcessed": 11,
+      "answeredCount": 10,
+      "unansweredCount": 1,
+      "verifiedCorrectCount": 8,
+      "verifiedIncorrectCount": 1,
+      "aiSuggestedCount": 1,
+      "uncertainCount": 1,
+      "unsupportedCount": 0,
+      "verifiedScorePercent": 88.9,
+      "scoreDenominatorNote": "Calculated strictly over 9 officially verified question(s) (8/9). Excluded 2 unverified/AI-suggested/uncertain question(s) from the score denominator.",
+      "topicCoverage": [
+        "Consensus & Replication",
+        "Web & Browser Security",
+        "Transactions & Indexing",
+        "HTTP & Transport Protocols",
+        "Complexity & Graph Algorithms",
+        "Fault Tolerance & Idempotency",
+        "Authentication & Cryptography"
+      ],
+      "principalStrengths": [
+        "Consensus & Replication (100% verified accuracy)",
+        "Web & Browser Security (100% verified accuracy)",
+        "Transactions & Indexing (100% verified accuracy)",
+        "Complexity & Graph Algorithms (100% verified accuracy)"
+      ],
+      "principalWeaknesses": [
+        "HTTP & Transport Protocols (1 verified error(s), 50% accuracy)",
+        "Fault Tolerance & Idempotency (1 unverified/uncertain, 0 unanswered)",
+        "Authentication & Cryptography (1 unverified/uncertain, 0 unanswered)"
+      ]
+    },
+    "questionBank": [
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_1",
+        "fingerprint": "qf_2993e0f4",
+        "questionText": "According to the CAP theorem, when a distributed data store experiences a network partition (P), which trade-off is unavoidable?",
+        "questionType": "single_choice",
+        "options": [
+          {
+            "id": "opt_cap_a",
+            "label": "A",
+            "text": "Choosing between linearizable Consistency (C) and 100% Availability (A)",
+            "disabled": false
+          },
+          {
+            "id": "opt_cap_b",
+            "label": "B",
+            "text": "Choosing between Durability and Horizontal Sharding",
+            "disabled": false
+          },
+          {
+            "id": "opt_cap_c",
+            "label": "C",
+            "text": "Guaranteeing both strict linearizability and zero-latency writes on all nodes",
+            "disabled": false
+          },
+          {
+            "id": "opt_cap_d",
+            "label": "D",
+            "text": "Disabling TLS encryption to preserve TCP throughput",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_cap_a"
+        ],
+        "officialCorrectAnswer": [
+          "opt_cap_a"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "During a network partition (P), nodes that cannot communicate must either reject/delay requests to preserve linearizable Consistency (CP) or serve potentially stale data to remain Available (AP).",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Distributed Systems",
+        "topic": "Consensus & Replication",
+        "subtopic": "Raft, Paxos & Quorum Consistency",
+        "difficulty": "medium",
+        "difficultyScore": 5,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.302Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Consensus & Replication\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_1"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_2",
+        "fingerprint": "qf_2e8d91bb",
+        "questionText": "In Chrome Extension Manifest V3, which component replaces persistent background pages for event-driven lifecycle coordination?",
+        "questionType": "single_choice",
+        "options": [
+          {
+            "id": "opt_mv3_a",
+            "label": "A",
+            "text": "DOM Frameset Controller",
+            "disabled": false
+          },
+          {
+            "id": "opt_mv3_b",
+            "label": "B",
+            "text": "Background Service Worker",
+            "disabled": false
+          },
+          {
+            "id": "opt_mv3_c",
+            "label": "C",
+            "text": "ActiveX NPAPI Plugin",
+            "disabled": false
+          },
+          {
+            "id": "opt_mv3_d",
+            "label": "D",
+            "text": "Unrestricted Synchronous XMLHttpRequest Worker",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_mv3_b"
+        ],
+        "officialCorrectAnswer": [
+          "opt_mv3_b"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "Manifest V3 replaces persistent background pages with event-driven Service Workers to improve security and memory efficiency.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Cybersecurity",
+        "topic": "Web & Browser Security",
+        "subtopic": "CSP, XSS, CSRF & Same-Origin Policy",
+        "difficulty": "easy",
+        "difficultyScore": 5,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.311Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Web & Browser Security\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_2"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_3",
+        "fingerprint": "qf_2786521c",
+        "questionText": "Which database recovery mechanism guarantees Atomicity and Durability by flushing redo/undo log records to disk before dirty pages are written?",
+        "questionType": "single_choice",
+        "options": [
+          {
+            "id": "opt_wal_a",
+            "label": "A",
+            "text": "Write-Ahead Logging (WAL)",
+            "disabled": false
+          },
+          {
+            "id": "opt_wal_b",
+            "label": "B",
+            "text": "Read Uncommitted Dirty Cache",
+            "disabled": false
+          },
+          {
+            "id": "opt_wal_c",
+            "label": "C",
+            "text": "UDP Broadcast Gossip",
+            "disabled": false
+          },
+          {
+            "id": "opt_wal_d",
+            "label": "D",
+            "text": "Client-Side LocalStorage Polling",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_wal_a"
+        ],
+        "officialCorrectAnswer": [
+          "opt_wal_a"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "Write-Ahead Logging (WAL) ensures that all modifications are recorded in stable log storage before data pages are updated in-place.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Database Systems",
+        "topic": "Transactions & Indexing",
+        "subtopic": "ACID, Isolation Levels & B-Tree/WAL",
+        "difficulty": "medium",
+        "difficultyScore": 5,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.319Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Transactions & Indexing\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_3"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_4",
+        "fingerprint": "qf_8581a5aa",
+        "questionText": "Which of the following HTTP methods are defined as idempotent by RFC 9110? (Select all that apply)",
+        "questionType": "multiple_choice",
+        "options": [
+          {
+            "id": "opt_http_get",
+            "label": "A",
+            "text": "GET",
+            "disabled": false
+          },
+          {
+            "id": "opt_http_put",
+            "label": "B",
+            "text": "PUT",
+            "disabled": false
+          },
+          {
+            "id": "opt_http_post",
+            "label": "C",
+            "text": "POST",
+            "disabled": false
+          },
+          {
+            "id": "opt_http_delete",
+            "label": "D",
+            "text": "DELETE",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_http_get",
+          "opt_http_put"
+        ],
+        "officialCorrectAnswer": [
+          "opt_http_get",
+          "opt_http_put",
+          "opt_http_delete"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "Per RFC 9110 Section 9.2.2, GET, HEAD, OPTIONS, TRACE, PUT, and DELETE are idempotent; POST is not idempotent.",
+        "verificationStatus": "verified_incorrect",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Networking & Systems",
+        "topic": "HTTP & Transport Protocols",
+        "subtopic": "TCP/UDP, HTTP/2, HTTP/3 & DNS",
+        "difficulty": "hard",
+        "difficultyScore": 5.8,
+        "timeSpentMs": 5,
+        "errorCategory": "conceptual_gap",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.327Z",
+        "priorityLevel": "high",
+        "priorityRationale": "High Priority: Verified error on a hard-difficulty foundational concept in \"HTTP & Transport Protocols\".",
+        "recommendedRevisionAction": "Compare your selected response (opt_http_get, opt_http_put) against the verified key (opt_http_get, opt_http_put, opt_http_delete) and restudy \"TCP/UDP, HTTP/2, HTTP/3 & DNS\".",
+        "similarityClusterId": "cluster_4"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_5",
+        "fingerprint": "qf_fc347f2c",
+        "questionText": "Which defense-in-depth controls directly mitigate Cross-Site Scripting (XSS) when rendering untrusted page text in a browser dashboard? (Select all that apply)",
+        "questionType": "multiple_choice",
+        "options": [
+          {
+            "id": "opt_xss_a",
+            "label": "A",
+            "text": "Context-aware HTML output encoding and safe DOM APIs (textContent)",
+            "disabled": false
+          },
+          {
+            "id": "opt_xss_b",
+            "label": "B",
+            "text": "Strict Content Security Policy (CSP) disallowing unsafe-inline scripts",
+            "disabled": false
+          },
+          {
+            "id": "opt_xss_c",
+            "label": "C",
+            "text": "Passing raw extracted HTML directly into innerHTML and eval()",
+            "disabled": false
+          },
+          {
+            "id": "opt_xss_d",
+            "label": "D",
+            "text": "Sanitizing and stripping executable script/iframe tags prior to storage",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_xss_a",
+          "opt_xss_b",
+          "opt_xss_d"
+        ],
+        "officialCorrectAnswer": [
+          "opt_xss_a",
+          "opt_xss_b",
+          "opt_xss_d"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "Safe DOM sinks (textContent), strict CSP headers, and input sanitization prevent untrusted data from executing as code.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Cybersecurity",
+        "topic": "Web & Browser Security",
+        "subtopic": "CSP, XSS, CSRF & Same-Origin Policy",
+        "difficulty": "medium",
+        "difficultyScore": 6.8,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.334Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Web & Browser Security\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_2"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_6",
+        "fingerprint": "qf_b4bd4b21",
+        "questionText": "True or False: Binary search over a sorted array of n elements has a worst-case time complexity of O(log n).",
+        "questionType": "true_false",
+        "options": [
+          {
+            "id": "opt_tf_true",
+            "label": "A",
+            "text": "True",
+            "disabled": false
+          },
+          {
+            "id": "opt_tf_false",
+            "label": "B",
+            "text": "False",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_tf_true"
+        ],
+        "officialCorrectAnswer": [
+          "opt_tf_true"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "Binary search halves the remaining search space on each comparison, completing in at most floor(log2(n)) + 1 comparisons.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Algorithms & Data Structures",
+        "topic": "Complexity & Graph Algorithms",
+        "subtopic": "Asymptotic Analysis, Trees & Shortest Paths",
+        "difficulty": "easy",
+        "difficultyScore": 4,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.342Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Complexity & Graph Algorithms\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_5"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_7",
+        "fingerprint": "qf_fe953222",
+        "questionText": "True or False: In Raft consensus, a follower node can unilaterally commit log entries without a majority quorum if its local clock is synchronized via NTP.",
+        "questionType": "true_false",
+        "options": [
+          {
+            "id": "opt_raft_true",
+            "label": "A",
+            "text": "True",
+            "disabled": false
+          },
+          {
+            "id": "opt_raft_false",
+            "label": "B",
+            "text": "False",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_raft_false"
+        ],
+        "officialCorrectAnswer": [
+          "opt_raft_false"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "Raft safety requires a leader elected by a majority quorum and replication across a majority of cluster nodes before committing any log entry.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Distributed Systems",
+        "topic": "Consensus & Replication",
+        "subtopic": "Raft, Paxos & Quorum Consistency",
+        "difficulty": "medium",
+        "difficultyScore": 6.3,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.349Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Consensus & Replication\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_1"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_8",
+        "fingerprint": "qf_56529b1e",
+        "questionText": "Enter the numeric HTTP status code returned when a client exceeds the permitted request rate limit (Too Many Requests):",
+        "questionType": "text_input",
+        "options": [],
+        "selectedResponse": [
+          "429"
+        ],
+        "officialCorrectAnswer": [
+          "429"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "RFC 6585 defines HTTP status code 429 as Too Many Requests.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Networking & Systems",
+        "topic": "HTTP & Transport Protocols",
+        "subtopic": "TCP/UDP, HTTP/2, HTTP/3 & DNS",
+        "difficulty": "easy",
+        "difficultyScore": 5.5,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.356Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"HTTP & Transport Protocols\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_4"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_9",
+        "fingerprint": "qf_9b17254b",
+        "questionText": "In Raft leader election, what minimum fraction of cluster votes must a candidate receive to become leader? (Type \"majority\")",
+        "questionType": "text_input",
+        "options": [],
+        "selectedResponse": [
+          "majority"
+        ],
+        "officialCorrectAnswer": [
+          "majority"
+        ],
+        "aiProposedAnswer": null,
+        "explanation": "A Raft candidate must receive votes from a strict majority ((N/2) + 1) of nodes in the cluster.",
+        "verificationStatus": "verified_correct",
+        "answerSource": "official_feedback",
+        "confidenceScore": 0.99,
+        "subject": "Distributed Systems",
+        "topic": "Consensus & Replication",
+        "subtopic": "Raft, Paxos & Quorum Consistency",
+        "difficulty": "medium",
+        "difficultyScore": 6.5,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Official In-Quiz Practice Feedback"
+        },
+        "timestamp": "2026-10-26T07:12:27.363Z",
+        "priorityLevel": "low",
+        "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Consensus & Replication\" with no recurring errors.",
+        "recommendedRevisionAction": "Schedule lightweight 14-day maintenance review only.",
+        "similarityClusterId": "cluster_1"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_10",
+        "fingerprint": "qf_e73d3a60",
+        "questionText": "When designing retry logic for transient RPC timeouts in distributed microservices, which strategy prevents synchronized retry storms across clients?",
+        "questionType": "single_choice",
+        "options": [
+          {
+            "id": "opt_retry_a",
+            "label": "A",
+            "text": "Exponential backoff combined with randomized jitter and bounded retry limits",
+            "disabled": false
+          },
+          {
+            "id": "opt_retry_b",
+            "label": "B",
+            "text": "Unbounded zero-delay tight-loop retries on every client thread",
+            "disabled": false
+          },
+          {
+            "id": "opt_retry_c",
+            "label": "C",
+            "text": "Fixed 100ms synchronized cron retries across all worker nodes",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [
+          "opt_retry_a"
+        ],
+        "officialCorrectAnswer": null,
+        "aiProposedAnswer": null,
+        "explanation": "Instructor Explanation: Exponential backoff with randomized jitter spreads out client retries and prevents cascading thundering-herd overload. (Note: Sourced from instructor lecture notes; not yet verified by an official grading key.)",
+        "verificationStatus": "ai_suggested",
+        "answerSource": "instructor_note",
+        "confidenceScore": 0.85,
+        "subject": "Distributed Systems",
+        "topic": "Fault Tolerance & Idempotency",
+        "subtopic": "Retries, Backoff & Circuit Breakers",
+        "difficulty": "medium",
+        "difficultyScore": 5,
+        "timeSpentMs": 5,
+        "errorCategory": "none",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "CS-402 Instructor Lecture Notes — Fault Tolerance Week 4"
+        },
+        "timestamp": "2026-10-26T07:12:27.370Z",
+        "priorityLevel": "medium",
+        "priorityRationale": "Medium Priority: Supporting concept in \"Fault Tolerance & Idempotency\" with ai suggested status requiring authoritative verification.",
+        "recommendedRevisionAction": "Validate the AI-proposed candidate answer against an official answer key before relying on it for exam preparation.",
+        "similarityClusterId": "cluster_6"
+      },
+      {
+        "sessionId": "sess_sample_synthetic_2026",
+        "questionId": "q_std_11",
+        "fingerprint": "qf_2e8c3669",
+        "questionText": "Which experimental quantum-resistant lattice parameter set is optimal for custom sub-millisecond IoT mesh handshakes without hardware acceleration?",
+        "questionType": "single_choice",
+        "options": [
+          {
+            "id": "opt_q_a",
+            "label": "A",
+            "text": "Parameter Set Alpha-512",
+            "disabled": false
+          },
+          {
+            "id": "opt_q_b",
+            "label": "B",
+            "text": "Parameter Set Beta-768",
+            "disabled": false
+          },
+          {
+            "id": "opt_q_c",
+            "label": "C",
+            "text": "Parameter Set Gamma-1024",
+            "disabled": false
+          }
+        ],
+        "selectedResponse": [],
+        "officialCorrectAnswer": null,
+        "aiProposedAnswer": null,
+        "explanation": "Conflicting reference key: Study Guide v1 specifies Alpha-512 whereas Errata Sheet v2 specifies Beta-768.",
+        "verificationStatus": "uncertain",
+        "answerSource": "approved_bank",
+        "confidenceScore": 0.25,
+        "subject": "Cybersecurity",
+        "topic": "Authentication & Cryptography",
+        "subtopic": "OAuth2, JWT, TLS & Key Management",
+        "difficulty": "hard",
+        "difficultyScore": 5,
+        "timeSpentMs": 5,
+        "errorCategory": "ambiguous_source",
+        "sourceMetadata": {
+          "referenceUrl": "http://localhost:5173/quiz-lab.html?scenario=standard",
+          "originDomain": "localhost",
+          "quizTitle": "CS-402 Distributed Systems & Security — Synthetic Practice Run",
+          "authorizationMode": "synthetic_sandbox",
+          "sourceProvenance": "Community Study Bank (Conflicting Errata #11)"
+        },
+        "timestamp": "2026-10-26T07:12:27.376Z",
+        "priorityLevel": "medium",
+        "priorityRationale": "Medium Priority: Supporting concept in \"Authentication & Cryptography\" with uncertain status requiring authoritative verification.",
+        "recommendedRevisionAction": "Obtain an authoritative explanation or answer key to resolve this ambiguous/unanswered item.",
+        "similarityClusterId": "cluster_7"
+      }
+    ],
+    "importantQuestions": {
+      "methodologyNote": "Questions are classified into High, Medium, and Low priority using transparent criteria: (1) Verified errors or repeated concepts across supplied materials = High; (2) Unverified AI suggestions, uncertain keys, or unanswered items = Medium; (3) Isolated details already verified correct = Low.",
+      "historicalDisclaimer": "Disclaimer: Priority ratings reflect conceptual centrality and observed session gaps. QuizPilot AI does not claim that any specific question will appear on a future examination without validated historical frequency evidence.",
+      "highPriorityCount": 1,
+      "mediumPriorityCount": 2,
+      "lowPriorityCount": 8,
+      "items": [
+        {
+          "questionId": "q_std_4",
+          "questionText": "Which of the following HTTP methods are defined as idempotent by RFC 9110? (Select all that apply)",
+          "topic": "HTTP & Transport Protocols",
+          "subtopic": "TCP/UDP, HTTP/2, HTTP/3 & DNS",
+          "difficulty": "hard",
+          "priorityLevel": "high",
+          "priorityRationale": "High Priority: Verified error on a hard-difficulty foundational concept in \"HTTP & Transport Protocols\".",
+          "verificationStatus": "verified_incorrect",
+          "recommendedAction": "Compare your selected response (opt_http_get, opt_http_put) against the verified key (opt_http_get, opt_http_put, opt_http_delete) and restudy \"TCP/UDP, HTTP/2, HTTP/3 & DNS\".",
+          "similarityClusterId": "cluster_4",
+          "relatedQuestionIds": [
+            "q_std_8"
+          ]
+        },
+        {
+          "questionId": "q_std_10",
+          "questionText": "When designing retry logic for transient RPC timeouts in distributed microservices, which strategy prevents synchronized retry storms across clients?",
+          "topic": "Fault Tolerance & Idempotency",
+          "subtopic": "Retries, Backoff & Circuit Breakers",
+          "difficulty": "medium",
+          "priorityLevel": "medium",
+          "priorityRationale": "Medium Priority: Supporting concept in \"Fault Tolerance & Idempotency\" with ai suggested status requiring authoritative verification.",
+          "verificationStatus": "ai_suggested",
+          "recommendedAction": "Validate the AI-proposed candidate answer against an official answer key before relying on it for exam preparation.",
+          "similarityClusterId": "cluster_6",
+          "relatedQuestionIds": []
+        },
+        {
+          "questionId": "q_std_11",
+          "questionText": "Which experimental quantum-resistant lattice parameter set is optimal for custom sub-millisecond IoT mesh handshakes without hardware acceleration?",
+          "topic": "Authentication & Cryptography",
+          "subtopic": "OAuth2, JWT, TLS & Key Management",
+          "difficulty": "hard",
+          "priorityLevel": "medium",
+          "priorityRationale": "Medium Priority: Supporting concept in \"Authentication & Cryptography\" with uncertain status requiring authoritative verification.",
+          "verificationStatus": "uncertain",
+          "recommendedAction": "Obtain an authoritative explanation or answer key to resolve this ambiguous/unanswered item.",
+          "similarityClusterId": "cluster_7",
+          "relatedQuestionIds": []
+        },
+        {
+          "questionId": "q_std_1",
+          "questionText": "According to the CAP theorem, when a distributed data store experiences a network partition (P), which trade-off is unavoidable?",
+          "topic": "Consensus & Replication",
+          "subtopic": "Raft, Paxos & Quorum Consistency",
+          "difficulty": "medium",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Consensus & Replication\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_1",
+          "relatedQuestionIds": [
+            "q_std_7",
+            "q_std_9"
+          ]
+        },
+        {
+          "questionId": "q_std_2",
+          "questionText": "In Chrome Extension Manifest V3, which component replaces persistent background pages for event-driven lifecycle coordination?",
+          "topic": "Web & Browser Security",
+          "subtopic": "CSP, XSS, CSRF & Same-Origin Policy",
+          "difficulty": "easy",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Web & Browser Security\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_2",
+          "relatedQuestionIds": [
+            "q_std_5"
+          ]
+        },
+        {
+          "questionId": "q_std_3",
+          "questionText": "Which database recovery mechanism guarantees Atomicity and Durability by flushing redo/undo log records to disk before dirty pages are written?",
+          "topic": "Transactions & Indexing",
+          "subtopic": "ACID, Isolation Levels & B-Tree/WAL",
+          "difficulty": "medium",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Transactions & Indexing\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_3",
+          "relatedQuestionIds": []
+        },
+        {
+          "questionId": "q_std_5",
+          "questionText": "Which defense-in-depth controls directly mitigate Cross-Site Scripting (XSS) when rendering untrusted page text in a browser dashboard? (Select all that apply)",
+          "topic": "Web & Browser Security",
+          "subtopic": "CSP, XSS, CSRF & Same-Origin Policy",
+          "difficulty": "medium",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Web & Browser Security\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_2",
+          "relatedQuestionIds": [
+            "q_std_2"
+          ]
+        },
+        {
+          "questionId": "q_std_6",
+          "questionText": "True or False: Binary search over a sorted array of n elements has a worst-case time complexity of O(log n).",
+          "topic": "Complexity & Graph Algorithms",
+          "subtopic": "Asymptotic Analysis, Trees & Shortest Paths",
+          "difficulty": "easy",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Complexity & Graph Algorithms\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_5",
+          "relatedQuestionIds": []
+        },
+        {
+          "questionId": "q_std_7",
+          "questionText": "True or False: In Raft consensus, a follower node can unilaterally commit log entries without a majority quorum if its local clock is synchronized via NTP.",
+          "topic": "Consensus & Replication",
+          "subtopic": "Raft, Paxos & Quorum Consistency",
+          "difficulty": "medium",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Consensus & Replication\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_1",
+          "relatedQuestionIds": [
+            "q_std_1",
+            "q_std_9"
+          ]
+        },
+        {
+          "questionId": "q_std_8",
+          "questionText": "Enter the numeric HTTP status code returned when a client exceeds the permitted request rate limit (Too Many Requests):",
+          "topic": "HTTP & Transport Protocols",
+          "subtopic": "TCP/UDP, HTTP/2, HTTP/3 & DNS",
+          "difficulty": "easy",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"HTTP & Transport Protocols\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_4",
+          "relatedQuestionIds": [
+            "q_std_4"
+          ]
+        },
+        {
+          "questionId": "q_std_9",
+          "questionText": "In Raft leader election, what minimum fraction of cluster votes must a candidate receive to become leader? (Type \"majority\")",
+          "topic": "Consensus & Replication",
+          "subtopic": "Raft, Paxos & Quorum Consistency",
+          "difficulty": "medium",
+          "priorityLevel": "low",
+          "priorityRationale": "Low Priority: Verified correct response on an isolated or already mastered detail in \"Consensus & Replication\" with no recurring errors.",
+          "verificationStatus": "verified_correct",
+          "recommendedAction": "Schedule lightweight 14-day maintenance review only.",
+          "similarityClusterId": "cluster_1",
+          "relatedQuestionIds": [
+            "q_std_1",
+            "q_std_7"
+          ]
+        }
+      ]
+    },
+    "performanceAnalysis": {
+      "verifiedAccuracyPercent": 88.9,
+      "verifiedNumerator": 8,
+      "verifiedDenominator": 9,
+      "excludedFromScoreCount": 2,
+      "exclusionExplanation": "Questions with verificationStatus in {ai_suggested, uncertain, unanswered, unsupported} without an authoritative answer key are excluded from the verified accuracy denominator to prevent unverified guesses from skewing the score.",
+      "accuracyByTopic": [
+        {
+          "subject": "Distributed Systems",
+          "topic": "Consensus & Replication",
+          "totalQuestions": 3,
+          "verifiedTotal": 3,
+          "verifiedCorrect": 3,
+          "verifiedIncorrect": 0,
+          "uncertainOrAiCount": 0,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": 100,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.99
+        },
+        {
+          "subject": "Cybersecurity",
+          "topic": "Web & Browser Security",
+          "totalQuestions": 2,
+          "verifiedTotal": 2,
+          "verifiedCorrect": 2,
+          "verifiedIncorrect": 0,
+          "uncertainOrAiCount": 0,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": 100,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.99
+        },
+        {
+          "subject": "Database Systems",
+          "topic": "Transactions & Indexing",
+          "totalQuestions": 1,
+          "verifiedTotal": 1,
+          "verifiedCorrect": 1,
+          "verifiedIncorrect": 0,
+          "uncertainOrAiCount": 0,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": 100,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.99
+        },
+        {
+          "subject": "Networking & Systems",
+          "topic": "HTTP & Transport Protocols",
+          "totalQuestions": 2,
+          "verifiedTotal": 2,
+          "verifiedCorrect": 1,
+          "verifiedIncorrect": 1,
+          "uncertainOrAiCount": 0,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": 50,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.99
+        },
+        {
+          "subject": "Algorithms & Data Structures",
+          "topic": "Complexity & Graph Algorithms",
+          "totalQuestions": 1,
+          "verifiedTotal": 1,
+          "verifiedCorrect": 1,
+          "verifiedIncorrect": 0,
+          "uncertainOrAiCount": 0,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": 100,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.99
+        },
+        {
+          "subject": "Distributed Systems",
+          "topic": "Fault Tolerance & Idempotency",
+          "totalQuestions": 1,
+          "verifiedTotal": 0,
+          "verifiedCorrect": 0,
+          "verifiedIncorrect": 0,
+          "uncertainOrAiCount": 1,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": null,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.85
+        },
+        {
+          "subject": "Cybersecurity",
+          "topic": "Authentication & Cryptography",
+          "totalQuestions": 1,
+          "verifiedTotal": 0,
+          "verifiedCorrect": 0,
+          "verifiedIncorrect": 0,
+          "uncertainOrAiCount": 1,
+          "unansweredCount": 0,
+          "verifiedAccuracyPercent": null,
+          "averageTimeMs": 5,
+          "averageConfidence": 0.25
+        }
+      ],
+      "errorRateByQuestionType": [
+        {
+          "questionType": "single_choice",
+          "totalQuestions": 5,
+          "verifiedTotal": 3,
+          "verifiedIncorrect": 0,
+          "errorRatePercent": 0,
+          "uncertainCount": 2
+        },
+        {
+          "questionType": "multiple_choice",
+          "totalQuestions": 2,
+          "verifiedTotal": 2,
+          "verifiedIncorrect": 1,
+          "errorRatePercent": 50,
+          "uncertainCount": 0
+        },
+        {
+          "questionType": "true_false",
+          "totalQuestions": 2,
+          "verifiedTotal": 2,
+          "verifiedIncorrect": 0,
+          "errorRatePercent": 0,
+          "uncertainCount": 0
+        },
+        {
+          "questionType": "text_input",
+          "totalQuestions": 2,
+          "verifiedTotal": 2,
+          "verifiedIncorrect": 0,
+          "errorRatePercent": 0,
+          "uncertainCount": 0
+        }
+      ],
+      "averageTimePerQuestionMs": 5,
+      "totalTimeSpentMs": 55,
+      "confidenceCalibration": {
+        "highConfidenceVerifiedCorrect": 8,
+        "highConfidenceVerifiedIncorrect": 1,
+        "lowConfidenceVerifiedCorrect": 0,
+        "lowConfidenceVerifiedIncorrect": 0,
+        "averageConfidenceOnCorrect": 0.99,
+        "averageConfidenceOnIncorrect": 0.99,
+        "calibrationNote": "Detected 1 high-confidence incorrect response(s) (overconfidence alert). Prioritize reviewing those misconceptions."
+      },
+      "repeatedConceptualMistakes": [
+        {
+          "concept": "HTTP & Transport Protocols",
+          "occurrences": 1,
+          "affectedQuestionIds": [
+            "q_std_4"
+          ],
+          "diagnosticSummary": "1 question(s) in \"HTTP & Transport Protocols\" exhibited verified errors or ambiguous evidence (conceptual_gap)."
+        },
+        {
+          "concept": "Authentication & Cryptography",
+          "occurrences": 1,
+          "affectedQuestionIds": [
+            "q_std_11"
+          ],
+          "diagnosticSummary": "1 question(s) in \"Authentication & Cryptography\" exhibited verified errors or ambiguous evidence (ambiguous_source)."
+        }
+      ],
+      "unresolvedOrAmbiguousQuestions": [
+        {
+          "questionId": "q_std_10",
+          "questionText": "When designing retry logic for transient RPC timeouts in distributed microservices, which strategy prevents synchronized retry storms across clients?",
+          "status": "ai_suggested",
+          "reason": "Instructor Explanation: Exponential backoff with randomized jitter spreads out client retries and prevents cascading thundering-herd overload. (Note: Sourced from instructor lecture notes; not yet verified by an official grading key.)"
+        },
+        {
+          "questionId": "q_std_11",
+          "questionText": "Which experimental quantum-resistant lattice parameter set is optimal for custom sub-millisecond IoT mesh handshakes without hardware acceleration?",
+          "status": "uncertain",
+          "reason": "Conflicting reference key: Study Guide v1 specifies Alpha-512 whereas Errata Sheet v2 specifies Beta-768."
+        }
+      ]
+    },
+    "studyPlan": {
+      "learnerDailyMinutes": 75,
+      "targetExamDate": "2026-11-09",
+      "daysUntilTarget": 14,
+      "priorityTopics": [
+        {
+          "rank": 1,
+          "topic": "HTTP & Transport Protocols",
+          "reason": "Prioritized due to 1 verified error(s).",
+          "recommendedMinutes": 25
+        },
+        {
+          "rank": 2,
+          "topic": "Fault Tolerance & Idempotency",
+          "reason": "Prioritized due to 1 unverified/uncertain item(s).",
+          "recommendedMinutes": 25
+        },
+        {
+          "rank": 3,
+          "topic": "Authentication & Cryptography",
+          "reason": "Prioritized due to 1 unverified/uncertain item(s).",
+          "recommendedMinutes": 25
+        },
+        {
+          "rank": 4,
+          "topic": "Consensus & Replication",
+          "reason": "Prioritized due to 3 foundational question(s) reviewed.",
+          "recommendedMinutes": 25
+        },
+        {
+          "rank": 5,
+          "topic": "Web & Browser Security",
+          "reason": "Prioritized due to 2 foundational question(s) reviewed.",
+          "recommendedMinutes": 25
+        },
+        {
+          "rank": 6,
+          "topic": "Transactions & Indexing",
+          "reason": "Prioritized due to 1 foundational question(s) reviewed.",
+          "recommendedMinutes": 25
+        },
+        {
+          "rank": 7,
+          "topic": "Complexity & Graph Algorithms",
+          "reason": "Prioritized due to 1 foundational question(s) reviewed.",
+          "recommendedMinutes": 25
+        }
+      ],
+      "recommendedRevisionOrder": [
+        "HTTP & Transport Protocols",
+        "Fault Tolerance & Idempotency",
+        "Authentication & Cryptography",
+        "Consensus & Replication",
+        "Web & Browser Security",
+        "Transactions & Indexing",
+        "Complexity & Graph Algorithms"
+      ],
+      "dailySchedule": [
+        {
+          "dayIndex": 1,
+          "dateLabel": "2026-10-26",
+          "focusTopics": [
+            "HTTP & Transport Protocols",
+            "Fault Tolerance & Idempotency"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for HTTP & Transport Protocols (30 min)",
+            "Complete targeted active-recall drill on HTTP & Transport Protocols & Fault Tolerance & Idempotency (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        },
+        {
+          "dayIndex": 2,
+          "dateLabel": "2026-10-27",
+          "focusTopics": [
+            "Fault Tolerance & Idempotency",
+            "Authentication & Cryptography"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for Fault Tolerance & Idempotency (30 min)",
+            "Complete targeted active-recall drill on Fault Tolerance & Idempotency & Authentication & Cryptography (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        },
+        {
+          "dayIndex": 3,
+          "dateLabel": "2026-10-28",
+          "focusTopics": [
+            "Authentication & Cryptography",
+            "Consensus & Replication"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for Authentication & Cryptography (30 min)",
+            "Complete targeted active-recall drill on Authentication & Cryptography & Consensus & Replication (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        },
+        {
+          "dayIndex": 4,
+          "dateLabel": "2026-10-29",
+          "focusTopics": [
+            "Consensus & Replication",
+            "Web & Browser Security"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for Consensus & Replication (30 min)",
+            "Complete targeted active-recall drill on Consensus & Replication & Web & Browser Security (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        },
+        {
+          "dayIndex": 5,
+          "dateLabel": "2026-10-30",
+          "focusTopics": [
+            "Web & Browser Security",
+            "Transactions & Indexing"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for Web & Browser Security (30 min)",
+            "Complete targeted active-recall drill on Web & Browser Security & Transactions & Indexing (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        },
+        {
+          "dayIndex": 6,
+          "dateLabel": "2026-10-31",
+          "focusTopics": [
+            "Transactions & Indexing",
+            "Complexity & Graph Algorithms"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for Transactions & Indexing (30 min)",
+            "Complete targeted active-recall drill on Transactions & Indexing & Complexity & Graph Algorithms (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        },
+        {
+          "dayIndex": 7,
+          "dateLabel": "2026-11-01",
+          "focusTopics": [
+            "Complexity & Graph Algorithms",
+            "HTTP & Transport Protocols"
+          ],
+          "allocatedMinutes": 75,
+          "activities": [
+            "Review official explanations & error logs for Complexity & Graph Algorithms (30 min)",
+            "Complete targeted active-recall drill on Complexity & Graph Algorithms & HTTP & Transport Protocols (30 min)",
+            "Resolve uncertain/unverified flashcards in Spaced Repetition Queue (15 min)"
+          ]
+        }
+      ],
+      "practiceExercises": [
+        {
+          "topic": "HTTP & Transport Protocols",
+          "exerciseTitle": "HTTP & Transport Protocols Mastery & Edge-Case Verification Drill",
+          "objective": "Eliminate the 1 verified conceptual mistake(s) by deriving why each distractor option is invalid.",
+          "targetQuestionCount": 5
+        },
+        {
+          "topic": "Fault Tolerance & Idempotency",
+          "exerciseTitle": "Fault Tolerance & Idempotency Mastery & Edge-Case Verification Drill",
+          "objective": "Validate 1 question(s) using authoritative primary references.",
+          "targetQuestionCount": 5
+        },
+        {
+          "topic": "Authentication & Cryptography",
+          "exerciseTitle": "Authentication & Cryptography Mastery & Edge-Case Verification Drill",
+          "objective": "Validate 1 question(s) using authoritative primary references.",
+          "targetQuestionCount": 5
+        },
+        {
+          "topic": "Consensus & Replication",
+          "exerciseTitle": "Consensus & Replication Mastery & Edge-Case Verification Drill",
+          "objective": "Validate 3 question(s) using authoritative primary references.",
+          "targetQuestionCount": 6
+        }
+      ],
+      "spacedRepetitionQueue": [
+        {
+          "topic": "HTTP & Transport Protocols",
+          "questionIds": [
+            "q_std_4",
+            "q_std_8"
+          ],
+          "urgency": "immediate_24h",
+          "scheduleIntervalsDays": [
+            1,
+            3,
+            7,
+            14,
+            30
+          ],
+          "rationale": "Contains 1 verified incorrect response(s); requires immediate 24-hour re-testing before extending intervals."
+        },
+        {
+          "topic": "Fault Tolerance & Idempotency",
+          "questionIds": [
+            "q_std_10"
+          ],
+          "urgency": "short_term_3d",
+          "scheduleIntervalsDays": [
+            2,
+            5,
+            10,
+            21
+          ],
+          "rationale": "Contains 1 unverified or unanswered question(s); verify against official key within 48-72 hours."
+        },
+        {
+          "topic": "Authentication & Cryptography",
+          "questionIds": [
+            "q_std_11"
+          ],
+          "urgency": "short_term_3d",
+          "scheduleIntervalsDays": [
+            2,
+            5,
+            10,
+            21
+          ],
+          "rationale": "Contains 1 unverified or unanswered question(s); verify against official key within 48-72 hours."
+        },
+        {
+          "topic": "Consensus & Replication",
+          "questionIds": [
+            "q_std_1",
+            "q_std_7",
+            "q_std_9"
+          ],
+          "urgency": "consolidation_14d",
+          "scheduleIntervalsDays": [
+            7,
+            14,
+            30
+          ],
+          "rationale": "All verified items answered accurately; schedule maintenance recall at 7 and 14 days."
+        },
+        {
+          "topic": "Web & Browser Security",
+          "questionIds": [
+            "q_std_2",
+            "q_std_5"
+          ],
+          "urgency": "consolidation_14d",
+          "scheduleIntervalsDays": [
+            7,
+            14,
+            30
+          ],
+          "rationale": "All verified items answered accurately; schedule maintenance recall at 7 and 14 days."
+        },
+        {
+          "topic": "Transactions & Indexing",
+          "questionIds": [
+            "q_std_3"
+          ],
+          "urgency": "consolidation_14d",
+          "scheduleIntervalsDays": [
+            7,
+            14,
+            30
+          ],
+          "rationale": "All verified items answered accurately; schedule maintenance recall at 7 and 14 days."
+        },
+        {
+          "topic": "Complexity & Graph Algorithms",
+          "questionIds": [
+            "q_std_6"
+          ],
+          "urgency": "consolidation_14d",
+          "scheduleIntervalsDays": [
+            7,
+            14,
+            30
+          ],
+          "rationale": "All verified items answered accurately; schedule maintenance recall at 7 and 14 days."
+        }
+      ],
+      "followUpMockPlan": {
+        "recommendedTiming": "After completing Day 3 revision blocks (3 days from today)",
+        "focusAreas": [
+          "HTTP & Transport Protocols",
+          "Fault Tolerance & Idempotency",
+          "Authentication & Cryptography"
+        ],
+        "targetConditions": "Timed practice session with official answer key loaded, targeting >= 90% verified accuracy and 0 unresolved high-priority gaps."
+      },
+      "improvementCriteria": [
+        "Achieve >= 90% accuracy on questions backed by an official answer key.",
+        "Reduce High-Confidence Incorrect responses (overconfidence errors) to 0.",
+        "Convert 100% of Uncertain / AI-Suggested items in High-Priority topics to Verified status using authoritative references.",
+        "Maintain average response time under 45 seconds per question without skipping multi-select option checks."
+      ]
+    }
+  }
+}

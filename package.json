@@ -1,0 +1,28 @@
+{
+  "name": "quizpilot-ai",
+  "version": "1.0.0",
+  "description": "QuizPilot AI — Intelligent Browser Extension & Study Analytics Platform for Authorized Practice Quizzes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "npm run build:extension && vite build",
+    "build:extension": "node scripts/build-extension.mjs",
+    "generate:report": "npx tsx scripts/generate-sample-report.ts",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.24.2",
+    "fake-indexeddb": "^6.0.0",
+    "jsdom": "^25.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8"
+  }
+}

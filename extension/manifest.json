@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "QuizPilot AI — Authorized Practice Quiz Assistant & Study Planner",
+  "short_name": "QuizPilot AI",
+  "version": "1.0.0",
+  "description": "Automates authorized practice quizzes, captures question-level provenance, identifies priority study topics, and generates personalized study reports.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "assets/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "QuizPilot AI Practice Assistant",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "dashboard.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": [
+        "assets/content-script.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; base-uri 'self';"
+  }
+}
